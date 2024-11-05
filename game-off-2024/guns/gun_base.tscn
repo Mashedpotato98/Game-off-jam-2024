@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c5qib7cvdeeah"]
+
+[node name="gun_base" type="Node2D"]
+
+[node name="Muzzle" type="Marker2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
