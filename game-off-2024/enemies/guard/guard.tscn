@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqf3y3vbgxl1w"]
+
+[ext_resource type="Script" path="res://enemies/guard/guard.gd" id="1_ant2o"]
+[ext_resource type="Texture2D" uid="uid://hex5xjx00dbk" path="res://icon.svg" id="2_f12uh"]
+[ext_resource type="PackedScene" uid="uid://dqgmd25610vvb" path="res://components/state_machine.tscn" id="2_ioyy7"]
+[ext_resource type="PackedScene" uid="uid://8gjof1e4026n" path="res://enemies/components/wander.tscn" id="2_v8aeu"]
+[ext_resource type="Script" path="res://enemies/guard/states/guardWander.gd" id="4_ax633"]
+[ext_resource type="Script" path="res://enemies/guard/states/guardAttack.gd" id="5_wocvv"]
+[ext_resource type="Texture2D" uid="uid://dq6vnxt0m1fyx" path="res://assets/light.png" id="7_14nkr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ae6yd"]
+size = Vector2(363, 414)
+
+[node name="guard" type="CharacterBody2D"]
+script = ExtResource("1_ant2o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_f12uh")
+
+[node name="wander" parent="." instance=ExtResource("2_v8aeu")]
+
+[node name="state_machine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_ioyy7")]
+initial_state = NodePath("guardWander")
+
+[node name="guardWander" type="Node" parent="state_machine" node_paths=PackedStringArray("enem_parent", "wander")]
+script = ExtResource("4_ax633")
+enem_parent = NodePath("../..")
+wander = NodePath("../../wander")
+spd = 100
+accel = 50
+
+[node name="guardAttack" type="Node" parent="state_machine" node_paths=PackedStringArray("enemy_parent", "navigation")]
+script = ExtResource("5_wocvv")
+enemy_parent = NodePath("../..")
+navigation = NodePath("../../NavigationAgent2D")
+spd = 100
+accel = 50
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="player_detector" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detector"]
+position = Vector2(-1.5, 5)
+shape = SubResource("RectangleShape2D_ae6yd")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("7_14nkr")
+texture_scale = 2.0
+
+[connection signal="body_entered" from="player_detector" to="state_machine/guardWander" method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="player_detector" to="state_machine/guardAttack" method="_on_player_detector_body_exited"]

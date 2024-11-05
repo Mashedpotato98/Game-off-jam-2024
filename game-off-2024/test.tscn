@@ -1,3 +1,31 @@
-[gd_scene format=3 uid="uid://bep4p5jfanhqy"]
+[gd_scene load_steps=4 format=3 uid="uid://bep4p5jfanhqy"]
+
+[ext_resource type="PackedScene" uid="uid://bv2g5wgeeo25m" path="res://player/player.tscn" id="1_flfnn"]
+[ext_resource type="PackedScene" uid="uid://cqf3y3vbgxl1w" path="res://enemies/guard/guard.tscn" id="2_ci42a"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m44ab"]
+vertices = PackedVector2Array(1143.95, 13.9922, 1141.04, 637, 7, 637.992, 7, 13)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-3, 3, 1154, 4, 1151, 647, -3, 648)])
 
 [node name="Test" type="Node2D"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_m44ab")
+
+[node name="Player" parent="." instance=ExtResource("1_flfnn")]
+position = Vector2(326, 161)
+
+[node name="guard" parent="." instance=ExtResource("2_ci42a")]
+position = Vector2(829, 335)
+group_name = "guard_1"
+
+[node name="Marker2D" type="Marker2D" parent="." groups=["guard_1"]]
+position = Vector2(868, 176)
+
+[node name="Marker2D2" type="Marker2D" parent="." groups=["guard_1"]]
+position = Vector2(656, 40)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)

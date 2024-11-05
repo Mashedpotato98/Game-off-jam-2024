@@ -14,6 +14,11 @@ config/name="Game off 2024"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[global_group]
+
+guard_1=""
+player=""
+
 [rendering]
 
 renderer/rendering_method="mobile"
