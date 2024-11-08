@@ -6,6 +6,7 @@ class_name gun_class
 
 @export var bullet:PackedScene
 @export var muzzle:Marker2D
+@export var anim:AnimationPlayer
 
 @export var bullet_count:int
 @export var arc:int
@@ -40,21 +41,21 @@ func _process(delta):
 	gun.global_position = new_position
 
 
-func fire():
+func fire(direction):
 	if can_shoot == true:
 		can_shoot = false
-		gun.anim.play("shoot")
+		anim.play("shoot")
 		for i in bullet_count:
 			var bullet_ins = bullet.instantiate()
 			bullet_ins.position = muzzle.global_position
 
 			if bullet_count == 1:
-				bullet_ins.rotation = muzzle.global_rotation
+				bullet_ins.rotation = direction
 			else:
 				var arc_rad = deg_to_rad(-arc)
 				var increment = arc_rad / (bullet_count - 1)
 				bullet_ins.global_rotation = (
-					muzzle.global_rotation + 
+					direction + 
 					increment * i - 
 					arc_rad / 2 
 				)

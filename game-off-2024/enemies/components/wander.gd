@@ -11,12 +11,14 @@ var direction : Vector2 = Vector2.ZERO
 func _ready():
 	group_name = get_parent().group_name
 	positions = get_tree().get_nodes_in_group(group_name)
-	_get_positions()
-	_get_next_position()
+	if get_tree().get_nodes_in_group(group_name).size() > 0:
+		_get_positions()
+		_get_next_position()
  
 func _physics_process(_delta):
-	if global_position.distance_to(current_position.position) < 10:
-		_get_next_position()
+	if get_tree().get_nodes_in_group(group_name).size() > 0:
+		if global_position.distance_to(current_position.position) < 10:
+			_get_next_position()
  
 func _get_positions():
 	temp_positions = positions.duplicate()

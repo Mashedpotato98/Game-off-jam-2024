@@ -1,11 +1,10 @@
 extends gun_class
 
-@onready var anim:AnimationPlayer = $AnimationPlayer
 
 func _process(delta: float) -> void:
-	gun.look_at(gun.get_global_mouse_position())
-
+	var dir = gun.get_global_mouse_position()
+	gun.look_at(dir)
 	if Input.is_action_pressed("shoot"):
-		fire()
+		fire(muzzle.global_rotation)
 	if Input.is_action_just_pressed("reload"):
 		reload()

@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bg6evui0wfrx5"]
+[gd_scene load_steps=6 format=3 uid="uid://bg6evui0wfrx5"]
 
 [ext_resource type="Script" path="res://guns/bullet.gd" id="1_f8wnd"]
 [ext_resource type="Texture2D" uid="uid://hex5xjx00dbk" path="res://icon.svg" id="2_25sym"]
+[ext_resource type="PackedScene" uid="uid://bje4s5b71rnj7" path="res://components/hurtbox_component.tscn" id="3_j2b5i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wuwnw"]
+size = Vector2(13, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfpiy"]
+size = Vector2(12, 12)
 
 [node name="bullet" type="CharacterBody2D"]
 script = ExtResource("1_f8wnd")
@@ -11,3 +18,19 @@ script = ExtResource("1_f8wnd")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_25sym")
+
+[node name="hurtboxComponent" parent="." instance=ExtResource("3_j2b5i")]
+collision_mask = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hurtboxComponent"]
+shape = SubResource("RectangleShape2D_wuwnw")
+
+[node name="collision_checker" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision_checker"]
+shape = SubResource("RectangleShape2D_vfpiy")
+
+[connection signal="area_entered" from="hurtboxComponent" to="." method="_on_hurtbox_component_area_entered"]
+[connection signal="area_entered" from="collision_checker" to="." method="_on_collision_checker_area_entered"]

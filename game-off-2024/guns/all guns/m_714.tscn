@@ -5,6 +5,21 @@
 [ext_resource type="PackedScene" uid="uid://bg6evui0wfrx5" path="res://guns/bullet.tscn" id="3_3b3tw"]
 [ext_resource type="Texture2D" uid="uid://hex5xjx00dbk" path="res://icon.svg" id="3_ctk61"]
 
+[sub_resource type="Animation" id="Animation_2jj7o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.3)]
+}
+
 [sub_resource type="Animation" id="Animation_4mg5u"]
 resource_name = "shoot"
 length = 0.3
@@ -22,32 +37,18 @@ tracks/0/keys = {
 "values": [Vector2(0.2, 0.3), Vector2(0.3, 0.3)]
 }
 
-[sub_resource type="Animation" id="Animation_2jj7o"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.2, 0.3)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uib1l"]
 _data = {
 "RESET": SubResource("Animation_2jj7o"),
 "shoot": SubResource("Animation_4mg5u")
 }
 
-[node name="m_714" node_paths=PackedStringArray("gun", "muzzle") instance=ExtResource("1_8eghd")]
+[node name="m_714" node_paths=PackedStringArray("gun", "muzzle", "anim") instance=ExtResource("1_8eghd")]
 script = ExtResource("2_fhx62")
 gun = NodePath(".")
 bullet = ExtResource("3_3b3tw")
 muzzle = NodePath("Muzzle")
+anim = NodePath("AnimationPlayer")
 bullet_count = 1
 fireRate = 3.0
 max_recoil = 30

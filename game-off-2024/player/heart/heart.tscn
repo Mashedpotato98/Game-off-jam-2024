@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://cns2ljf0fipot"]
+
+[ext_resource type="Texture2D" uid="uid://jwvfx3jhdggq" path="res://assets/Heart/Heart/hrt.png" id="1_ukt6h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7sl7"]
+atlas = ExtResource("1_ukt6h")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7h4e"]
+atlas = ExtResource("1_ukt6h")
+region = Rect2(64, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2ehm"]
+atlas = ExtResource("1_ukt6h")
+region = Rect2(128, 0, 64, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvrjf"]
+atlas = ExtResource("1_ukt6h")
+region = Rect2(0, 0, 64, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p55vc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7sl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7h4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2ehm")
+}],
+"loop": true,
+"name": &"beating_heart",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvrjf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="heart" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_p55vc")
+animation = &"beating_heart"

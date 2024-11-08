@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bep4p5jfanhqy"]
+[gd_scene load_steps=5 format=3 uid="uid://bep4p5jfanhqy"]
 
 [ext_resource type="PackedScene" uid="uid://bv2g5wgeeo25m" path="res://player/player.tscn" id="1_flfnn"]
 [ext_resource type="PackedScene" uid="uid://cqf3y3vbgxl1w" path="res://enemies/guard/guard.tscn" id="2_ci42a"]
+[ext_resource type="PackedScene" uid="uid://bryd1m2oq0ikx" path="res://enemies/shooting_guard/shooting_guard.tscn" id="3_7n3fq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m44ab"]
 vertices = PackedVector2Array(1143.95, 13.9922, 1141.04, 637, 7, 637.992, 7, 13)
@@ -29,3 +30,5 @@ position = Vector2(656, 40)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
+
+[node name="Shooting_guard" parent="." instance=ExtResource("3_7n3fq")]

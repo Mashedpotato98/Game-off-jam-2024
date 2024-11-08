@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqf3y3vbgxl1w"]
+[gd_scene load_steps=12 format=3 uid="uid://cqf3y3vbgxl1w"]
 
 [ext_resource type="Script" path="res://enemies/guard/guard.gd" id="1_ant2o"]
 [ext_resource type="Texture2D" uid="uid://hex5xjx00dbk" path="res://icon.svg" id="2_f12uh"]
@@ -7,9 +7,14 @@
 [ext_resource type="Script" path="res://enemies/guard/states/guardWander.gd" id="4_ax633"]
 [ext_resource type="Script" path="res://enemies/guard/states/guardAttack.gd" id="5_wocvv"]
 [ext_resource type="Texture2D" uid="uid://dq6vnxt0m1fyx" path="res://assets/light.png" id="7_14nkr"]
+[ext_resource type="PackedScene" uid="uid://bca6c55glm5kd" path="res://components/hitbox_component.tscn" id="8_mhclb"]
+[ext_resource type="PackedScene" uid="uid://d22hi5vpihhpk" path="res://components/health_component.tscn" id="9_tdwsp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ae6yd"]
 size = Vector2(363, 414)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vho0r"]
+size = Vector2(117, 115)
 
 [node name="guard" type="CharacterBody2D"]
 script = ExtResource("1_ant2o")
@@ -50,6 +55,16 @@ shape = SubResource("RectangleShape2D_ae6yd")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 texture = ExtResource("7_14nkr")
 texture_scale = 2.0
+
+[node name="hitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("8_mhclb")]
+collision_layer = 4
+health_component = NodePath("../health_component")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitboxComponent"]
+shape = SubResource("RectangleShape2D_vho0r")
+
+[node name="health_component" parent="." instance=ExtResource("9_tdwsp")]
+max_health = 1
 
 [connection signal="body_entered" from="player_detector" to="state_machine/guardWander" method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="player_detector" to="state_machine/guardAttack" method="_on_player_detector_body_exited"]
