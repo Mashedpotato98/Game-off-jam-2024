@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://2cpfgodwmeey"]
+
+[ext_resource type="PackedScene" uid="uid://c5qib7cvdeeah" path="res://guns/gun_base.tscn" id="1_iruvb"]
+[ext_resource type="Script" path="res://guns/enemy_gun/rovington_enem.gd" id="2_lo2e5"]
+
+[node name="rovington_enem" instance=ExtResource("1_iruvb")]
+script = ExtResource("2_lo2e5")
+
+[node name="Timer" type="Timer" parent="." index="3"]
+wait_time = 3.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

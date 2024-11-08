@@ -19,12 +19,15 @@ var can_shoot:bool = true
 var reloading:bool = false
 
 @export var total_ammo:int
-@export var mag_ammo:int
+var mag_ammo:int
 @export var max_mag_ammo:int
 
 
 var offset:Vector2 = Vector2(0, 0)
 var radius = 30
+
+func _ready() -> void:
+	mag_ammo = max_mag_ammo
 
 func _process(delta):
 	var mouse_position = gun.get_global_mouse_position()

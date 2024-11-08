@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://btl678p7vlo4p"]
+
+[ext_resource type="PackedScene" uid="uid://c5qib7cvdeeah" path="res://guns/gun_base.tscn" id="1_1iemk"]
+[ext_resource type="Script" path="res://guns/enemy_gun/glokler_enem.gd" id="2_egaoy"]
+[ext_resource type="PackedScene" uid="uid://ccl3ibilv02qo" path="res://guns/enemy_gun/enemy_bullet.tscn" id="3_0wif6"]
+
+[node name="glokler_enem" node_paths=PackedStringArray("gun", "muzzle", "anim") instance=ExtResource("1_1iemk")]
+script = ExtResource("2_egaoy")
+gun = NodePath(".")
+bullet = ExtResource("3_0wif6")
+muzzle = NodePath("Muzzle")
+anim = NodePath("AnimationPlayer")
+bullet_count = 1
+fireRate = 1.0
+max_recoil = 30
+total_ammo = 50
+max_mag_ammo = 10
+
+[node name="Timer" type="Timer" parent="." index="3"]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

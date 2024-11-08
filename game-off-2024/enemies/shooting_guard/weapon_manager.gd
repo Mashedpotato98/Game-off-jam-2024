@@ -1,7 +1,8 @@
 extends Node
 
 var weapon:Node2D
-var weapon_list:Array = ["res://guns/enemy_gun/m_7_enem.tscn"]
+var weapon_list:Array = ["res://guns/enemy_gun/m_7_enem.tscn","res://guns/enemy_gun/rovington_enem.tscn",
+"res://guns/enemy_gun/glokler_enem.tscn"]
 
 func _ready() -> void:
 	var random_weapon = weapon_list.pick_random()
