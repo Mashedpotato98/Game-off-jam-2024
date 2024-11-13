@@ -3,6 +3,7 @@ extends Area2D
 var levels:Array = []
 
 func change_floor():
+	Global.keys = 0
 	levels.shuffle()
 	var next_level = levels[1]
 	if next_level == get_parent().get_path():

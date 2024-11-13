@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0gtu7i2apkxl"]
+
+[ext_resource type="StyleBox" uid="uid://qsupi373ss5v" path="res://assets/new_style_box_flat.tres" id="1_2trox"]
+[ext_resource type="Texture2D" uid="uid://be4hdmef1mqrg" path="res://assets/menu_background.png" id="1_h0jgc"]
+[ext_resource type="StyleBox" uid="uid://cvutpeytx8gs5" path="res://assets/hover_box_flat.tres" id="2_mghji"]
+[ext_resource type="Script" path="res://levels/settings_menu.gd" id="3_7fpmw"]
+
+[sub_resource type="Theme" id="Theme_00cc4"]
+Button/styles/disabled = ExtResource("1_2trox")
+Button/styles/focus = ExtResource("1_2trox")
+Button/styles/hover = ExtResource("2_mghji")
+Button/styles/normal = ExtResource("1_2trox")
+CheckBox/font_sizes/font_size = 32
+CheckBox/styles/disabled = ExtResource("1_2trox")
+CheckBox/styles/hover = ExtResource("2_mghji")
+HSlider/styles/grabber_area = ExtResource("1_2trox")
+HSlider/styles/grabber_area_highlight = ExtResource("1_2trox")
+HSlider/styles/slider = ExtResource("1_2trox")
+
+[node name="Settings_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 10.0
+offset_right = 21.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_00cc4")
+script = ExtResource("3_7fpmw")
+
+[node name="Menu" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.5
+offset_top = -177.5
+offset_right = 157.5
+offset_bottom = 177.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_h0jgc")
+
+[node name="VboContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.5
+offset_top = -109.5
+offset_right = 52.5
+offset_bottom = 109.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckBox" type="CheckBox" parent="Menu/VboContainer"]
+layout_mode = 2
+text = "Mute"
+
+[node name="Volume" type="Label" parent="Menu/VboContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="volume_slider" type="HSlider" parent="Menu/VboContainer"]
+layout_mode = 2
+
+[connection signal="toggled" from="Menu/VboContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="value_changed" from="Menu/VboContainer/volume_slider" to="." method="_on_volume_slider_value_changed"]

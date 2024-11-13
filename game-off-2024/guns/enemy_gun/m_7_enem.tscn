@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b1e241stfnki"]
 
 [ext_resource type="PackedScene" uid="uid://c5qib7cvdeeah" path="res://guns/gun_base.tscn" id="1_bqj07"]
-[ext_resource type="Script" path="res://guns/enemy_gun/m_7_enem.gd" id="2_d431b"]
+[ext_resource type="Script" path="res://guns/m_714/m_7_enem.gd" id="2_d431b"]
 [ext_resource type="PackedScene" uid="uid://ccl3ibilv02qo" path="res://guns/enemy_gun/enemy_bullet.tscn" id="3_ot86r"]
 
 [sub_resource type="Animation" id="Animation_2mdpe"]

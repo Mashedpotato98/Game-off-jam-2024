@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbogwxd842lls"]
+
+[ext_resource type="Script" path="res://enemies/spider_enemy/claw.gd" id="1_7o78q"]
+[ext_resource type="PackedScene" uid="uid://bje4s5b71rnj7" path="res://components/hurtbox_component.tscn" id="2_ohuh4"]
+
+[node name="Claw" type="RayCast2D"]
+enabled = false
+script = ExtResource("1_7o78q")
+
+[node name="hurtboxComponent" parent="." instance=ExtResource("2_ohuh4")]
+attack_damage = 1
+
+[node name="Line2D" type="Line2D" parent="."]

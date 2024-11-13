@@ -29,21 +29,6 @@ var radius = 30
 func _ready() -> void:
 	mag_ammo = max_mag_ammo
 
-func _process(delta):
-	var mouse_position = gun.get_global_mouse_position()
-	var recoil_degree_max = recoil_angle * 0.5
-	var recoil_radians_actual = deg_to_rad(randf_range(-recoil_degree_max,recoil_degree_max))
-	var recoil_increment = max_recoil * 0.1
-	
-	recoil_angle = clamp(recoil_angle + recoil_increment,0.0,max_recoil)
-	muzzle.rotation = recoil_radians_actual
-
-
-	var direction = (mouse_position - gun.position).normalized()
-	var new_position = gun.position + direction * radius
-	gun.global_position = new_position
-
-
 func fire(direction):
 	if can_shoot == true:
 		can_shoot = false

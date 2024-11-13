@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6q4oypalgclh"]
+
+[ext_resource type="PackedScene" uid="uid://dqgmd25610vvb" path="res://components/state_machine.tscn" id="1_7bb8u"]
+[ext_resource type="Script" path="res://enemies/spider_enemy/states/SpiderAttack.gd" id="2_hqlba"]
+[ext_resource type="Script" path="res://enemies/spider_enemy/states/spiderMove.gd" id="3_gl46y"]
+[ext_resource type="PackedScene" uid="uid://dbogwxd842lls" path="res://enemies/spider_enemy/claw.tscn" id="3_rll4b"]
+[ext_resource type="Texture2D" uid="uid://hex5xjx00dbk" path="res://icon.svg" id="4_2ebil"]
+[ext_resource type="Texture2D" uid="uid://dq6vnxt0m1fyx" path="res://assets/light.png" id="5_2icvh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1kqux"]
+radius = 138.362
+
+[node name="spiderEnemy" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="state_machine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("1_7bb8u")]
+initial_state = NodePath("spiderMove")
+
+[node name="SpiderAttack" type="Node" parent="state_machine" node_paths=PackedStringArray("enem_parent", "ray")]
+script = ExtResource("2_hqlba")
+enem_parent = NodePath("../..")
+ray = NodePath("../../Claw")
+
+[node name="spiderMove" type="Node" parent="state_machine" node_paths=PackedStringArray("ray", "enemy_parent", "navigation")]
+script = ExtResource("3_gl46y")
+ray = NodePath("../../Claw")
+enemy_parent = NodePath("../..")
+navigation = NodePath("../../NavigationAgent2D")
+spd = 70
+accel = 35
+
+[node name="Claw" parent="." instance=ExtResource("3_rll4b")]
+enabled = true
+target_position = Vector2(100, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_2ebil")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+texture = ExtResource("5_2icvh")
+texture_scale = 2.0
+
+[node name="player_detector" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detector"]
+shape = SubResource("CircleShape2D_1kqux")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[connection signal="body_entered" from="player_detector" to="state_machine/spiderMove" method="_on_player_detector_body_entered"]

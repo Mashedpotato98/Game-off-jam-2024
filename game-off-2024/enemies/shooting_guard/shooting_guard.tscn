@@ -1,72 +1,24 @@
-[gd_scene load_steps=12 format=3 uid="uid://bryd1m2oq0ikx"]
+[gd_scene load_steps=4 format=3 uid="uid://bryd1m2oq0ikx"]
 
-[ext_resource type="Script" path="res://enemies/shooting_guard/shooting_guard.gd" id="1_hsmx1"]
+[ext_resource type="Script" path="res://guns/pickups/m7_pick_up.gd" id="1_effos"]
 [ext_resource type="Texture2D" uid="uid://hex5xjx00dbk" path="res://icon.svg" id="1_mycu4"]
-[ext_resource type="PackedScene" uid="uid://dqgmd25610vvb" path="res://components/state_machine.tscn" id="1_nsn6k"]
-[ext_resource type="Script" path="res://enemies/shooting_guard/states/sGuardwander.gd" id="3_7jtjb"]
-[ext_resource type="Script" path="res://enemies/shooting_guard/states/sGuardAttack.gd" id="4_fb2vq"]
-[ext_resource type="Script" path="res://enemies/shooting_guard/weapon_manager.gd" id="6_quluq"]
-[ext_resource type="PackedScene" uid="uid://bca6c55glm5kd" path="res://components/hitbox_component.tscn" id="7_mrbhc"]
-[ext_resource type="PackedScene" uid="uid://d22hi5vpihhpk" path="res://components/health_component.tscn" id="8_diw0j"]
-[ext_resource type="PackedScene" uid="uid://8gjof1e4026n" path="res://enemies/components/wander.tscn" id="9_cvx5m"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gi2xv"]
-radius = 116.108
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssct4"]
+size = Vector2(38, 38)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aaum1"]
-size = Vector2(96, 96)
-
-[node name="Shooting_guard" type="CharacterBody2D"]
-script = ExtResource("1_hsmx1")
-group_name = "s_guard"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+[node name="m7_pickp" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_effos")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_mycu4")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ssct4")
 
-[node name="state_machine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("1_nsn6k")]
-initial_state = NodePath("sGuardAttack")
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
 
-[node name="sGuardWander" type="Node" parent="state_machine" node_paths=PackedStringArray("enem_parent", "wander")]
-script = ExtResource("3_7jtjb")
-enem_parent = NodePath("../..")
-wander = NodePath("../../wander")
-spd = 50
-accel = 25
-
-[node name="sGuardAttack" type="Node" parent="state_machine" node_paths=PackedStringArray("weapon_man", "enemy_parent", "navigation")]
-script = ExtResource("4_fb2vq")
-weapon_man = NodePath("../../weapon_manager")
-enemy_parent = NodePath("../..")
-navigation = NodePath("../../NavigationAgent2D")
-spd = 50
-accel = 50
-
-[node name="player_detector" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detector"]
-shape = SubResource("CircleShape2D_gi2xv")
-
-[node name="weapon_manager" type="Node" parent="."]
-script = ExtResource("6_quluq")
-
-[node name="hitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_mrbhc")]
-collision_layer = 4
-health_component = NodePath("../health_component")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitboxComponent"]
-shape = SubResource("RectangleShape2D_aaum1")
-
-[node name="health_component" parent="." instance=ExtResource("8_diw0j")]
-max_health = 1
-
-[node name="wander" parent="." instance=ExtResource("9_cvx5m")]
-
-[connection signal="body_entered" from="player_detector" to="state_machine/sGuardWander" method="_on_player_detector_body_entered"]
-[connection signal="body_exited" from="player_detector" to="state_machine/sGuardAttack" method="_on_player_detector_body_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
