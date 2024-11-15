@@ -1,6 +1,5 @@
 extends gun_class
 
-
 func _process(delta: float) -> void:
 	var dir = gun.get_global_mouse_position()
 	gun.look_at(dir)
@@ -8,3 +7,4 @@ func _process(delta: float) -> void:
 		fire(muzzle.global_rotation)
 	if Input.is_action_just_pressed("reload"):
 		reload()
+	gun.position = get_parent().get_parent().position

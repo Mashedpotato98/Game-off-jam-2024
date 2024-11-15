@@ -7,3 +7,4 @@ func _process(delta: float) -> void:
 		fire(muzzle.global_rotation)
 	if Input.is_action_just_pressed("reload"):
 		reload()
+	gun.position = get_parent().get_parent().position

@@ -38,10 +38,12 @@ func switch_weapon():
 	get_child(weapon_index - 1).show()
 	get_child(weapon_index-1).set_process(true)
 
-func add_weapon(weapon):
+func add_weapon(weapon:Node2D):
 	if get_child_count() < 2:
 		add_child(weapon)
-		weapon_check()
+		weapon.hide()
+		weapon.set_process(false)
+		weapon_index += 1
 
 func weapon_check():
 	for child in get_child_count():

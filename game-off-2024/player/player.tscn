@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://player/player.gd" id="1_hvvt5"]
 [ext_resource type="Texture2D" uid="uid://yvml06nl8pch" path="res://assets/player.png" id="2_umjby"]
 [ext_resource type="Texture2D" uid="uid://dq6vnxt0m1fyx" path="res://assets/light.png" id="3_wr5l3"]
-[ext_resource type="PackedScene" uid="uid://bdw2fgswr67pa" path="res://guns/all guns/m_714.tscn" id="4_n12sp"]
 [ext_resource type="Script" path="res://player/weapon_manager.gd" id="5_dry04"]
+[ext_resource type="PackedScene" uid="uid://u30o524rdf0o" path="res://guns/all guns/rovington_781.tscn" id="5_gefjr"]
 [ext_resource type="PackedScene" uid="uid://bca6c55glm5kd" path="res://components/hitbox_component.tscn" id="6_2322e"]
 [ext_resource type="PackedScene" uid="uid://d22hi5vpihhpk" path="res://components/health_component.tscn" id="7_a2ic5"]
 [ext_resource type="PackedScene" uid="uid://cns2ljf0fipot" path="res://player/heart/heart.tscn" id="8_qthg5"]
@@ -96,7 +96,7 @@ texture = ExtResource("3_wr5l3")
 [node name="weapon_manager" type="Node" parent="."]
 script = ExtResource("5_dry04")
 
-[node name="m_714" parent="weapon_manager" instance=ExtResource("4_n12sp")]
+[node name="rovington_781" parent="weapon_manager" instance=ExtResource("5_gefjr")]
 
 [node name="hitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_2322e")]
 collision_layer = 1
