@@ -8,5 +8,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	muzzle.look_at(player.global_position)
 
+
 func _on_timer_timeout() -> void:
 	fire(muzzle.global_rotation)
+	$Timer.start()

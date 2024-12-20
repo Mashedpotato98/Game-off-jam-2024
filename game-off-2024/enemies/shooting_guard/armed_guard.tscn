@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1tmm2jcdytfx"]
+
+[ext_resource type="PackedScene" uid="uid://dqgmd25610vvb" path="res://components/state_machine.tscn" id="1_8y2w8"]
+[ext_resource type="Texture2D" uid="uid://b5p6r5utr4t0m" path="res://icon.svg" id="1_wkcyx"]
+[ext_resource type="Script" path="res://enemies/shooting_guard/states/sGuardAttack.gd" id="4_tls5a"]
+[ext_resource type="PackedScene" uid="uid://d22hi5vpihhpk" path="res://components/health_component.tscn" id="5_h3lyh"]
+[ext_resource type="Script" path="res://sGuardIdle.gd" id="5_strfs"]
+[ext_resource type="PackedScene" uid="uid://bca6c55glm5kd" path="res://components/hitbox_component.tscn" id="6_f6pn3"]
+[ext_resource type="PackedScene" uid="uid://bje4s5b71rnj7" path="res://components/hurtbox_component.tscn" id="7_iqw1l"]
+[ext_resource type="Script" path="res://enemies/shooting_guard/weapon_manager.gd" id="9_f3jb8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_btj35"]
+radius = 103.044
+
+[node name="armed_guard" type="CharacterBody2D"]
+
+[node name="weapon_manager" type="Node" parent="."]
+script = ExtResource("9_f3jb8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_wkcyx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="state_machine" parent="." instance=ExtResource("1_8y2w8")]
+
+[node name="sGuardAttack" type="Node" parent="state_machine" node_paths=PackedStringArray("weapon_man", "enemy_parent", "navigation")]
+script = ExtResource("4_tls5a")
+weapon_man = NodePath("../../weapon_manager")
+enemy_parent = NodePath("../..")
+navigation = NodePath("../../NavigationAgent2D")
+spd = 80
+accel = 20
+
+[node name="sGuardIdle" type="Node" parent="state_machine"]
+script = ExtResource("5_strfs")
+
+[node name="playerDetector" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetector"]
+shape = SubResource("CircleShape2D_btj35")
+
+[node name="health_component" parent="." instance=ExtResource("5_h3lyh")]
+max_health = 2
+
+[node name="hitboxComponent" parent="." instance=ExtResource("6_f6pn3")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitboxComponent"]
+
+[node name="hurtboxComponent" parent="." instance=ExtResource("7_iqw1l")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtboxComponent"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[connection signal="body_entered" from="playerDetector" to="state_machine/sGuardIdle" method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="playerDetector" to="state_machine/sGuardAttack" method="_on_player_detector_body_exited"]

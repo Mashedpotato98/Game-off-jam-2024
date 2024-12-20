@@ -12,9 +12,9 @@ var target:CharacterBody2D
 func Enter():
 	target = get_tree().get_first_node_in_group("player")
 
-func _physics_process(delta: float) -> void:
+func physics_update(_delta:float):
 	if target:
-		_move_to_taget(delta)
+		_move_to_taget(_delta)
 	enemy_parent.move_and_slide()
 
 func _move_to_taget(_delta):

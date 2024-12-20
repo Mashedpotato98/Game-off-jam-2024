@@ -13,3 +13,4 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	fire(muzzle.global_rotation)
+	$Timer.start(1)

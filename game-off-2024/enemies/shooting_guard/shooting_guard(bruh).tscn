@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bryd1m2oq0ikx"]
 
 [ext_resource type="Script" path="res://guns/pickups/m7_pick_up.gd" id="1_effos"]
-[ext_resource type="Texture2D" uid="uid://hex5xjx00dbk" path="res://icon.svg" id="1_mycu4"]
+[ext_resource type="Texture2D" uid="uid://b5p6r5utr4t0m" path="res://icon.svg" id="1_mycu4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ssct4"]
 size = Vector2(38, 38)
