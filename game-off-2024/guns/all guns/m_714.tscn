@@ -55,6 +55,7 @@ fireRate = 4.0
 max_recoil = 600
 total_ammo = 90
 max_mag_ammo = 30
+reload_time = 1.0
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(0.2, 0.3)

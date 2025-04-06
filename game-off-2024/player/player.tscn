@@ -1,12 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://bv2g5wgeeo25m"]
+[gd_scene load_steps=16 format=3 uid="uid://bv2g5wgeeo25m"]
 
 [ext_resource type="Script" uid="uid://c8486q4jivmcy" path="res://player/player.gd" id="1_hvvt5"]
 [ext_resource type="Texture2D" uid="uid://bejo53i3s3xkf" path="res://assets/player.png" id="2_umjby"]
 [ext_resource type="Texture2D" uid="uid://cpmitqtk81anu" path="res://assets/light.png" id="3_wr5l3"]
-[ext_resource type="Script" uid="uid://ck1hoeyk4nkhy" path="res://player/weapon_manager.gd" id="5_dry04"]
+[ext_resource type="Script" uid="uid://ck1hoeyk4nkhy" path="res://player/managers/weapon_manager.gd" id="5_dry04"]
 [ext_resource type="PackedScene" uid="uid://u30o524rdf0o" path="res://guns/all guns/rovington_781.tscn" id="5_gefjr"]
 [ext_resource type="PackedScene" uid="uid://bca6c55glm5kd" path="res://components/hitbox_component.tscn" id="6_2322e"]
 [ext_resource type="PackedScene" uid="uid://d22hi5vpihhpk" path="res://components/health_component.tscn" id="7_a2ic5"]
+[ext_resource type="Script" uid="uid://fwnsirxfdojw" path="res://player/managers/ui_manager.gd" id="8_hg6s5"]
 [ext_resource type="PackedScene" uid="uid://cns2ljf0fipot" path="res://player/heart/heart.tscn" id="8_qthg5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfrk3"]
@@ -92,8 +93,9 @@ vframes = 3
 energy = 0.3
 texture = ExtResource("3_wr5l3")
 
-[node name="weapon_manager" type="Node" parent="."]
+[node name="weapon_manager" type="Node" parent="." node_paths=PackedStringArray("ammo_count")]
 script = ExtResource("5_dry04")
+ammo_count = NodePath("../ui_manager/ui/ammo")
 
 [node name="rovington_781" parent="weapon_manager" instance=ExtResource("5_gefjr")]
 max_mag_ammo = 6
@@ -102,50 +104,55 @@ max_mag_ammo = 6
 collision_layer = 1
 health_component = NodePath("../health_component")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitboxComponent"]
+[node name="CollisionShape" type="CollisionShape2D" parent="hitboxComponent"]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_nefqh")
 
 [node name="health_component" parent="." instance=ExtResource("7_a2ic5")]
 max_health = 3
 
-[node name="heart_bar" type="CanvasLayer" parent="."]
-
-[node name="HBoxContainer" type="HBoxContainer" parent="heart_bar"]
-offset_right = 1154.0
-offset_bottom = 647.0
-
-[node name="heart" type="TextureRect" parent="heart_bar/HBoxContainer"]
-custom_minimum_size = Vector2(70, 50)
-layout_mode = 2
-
-[node name="heart" parent="heart_bar/HBoxContainer/heart" instance=ExtResource("8_qthg5")]
-position = Vector2(36, 33)
-
-[node name="heart2" type="TextureRect" parent="heart_bar/HBoxContainer"]
-custom_minimum_size = Vector2(70, 50)
-layout_mode = 2
-
-[node name="heart" parent="heart_bar/HBoxContainer/heart2" instance=ExtResource("8_qthg5")]
-position = Vector2(36, 33)
-
-[node name="heart3" type="TextureRect" parent="heart_bar/HBoxContainer"]
-custom_minimum_size = Vector2(70, 50)
-layout_mode = 2
-
-[node name="heart" parent="heart_bar/HBoxContainer/heart3" instance=ExtResource("8_qthg5")]
-position = Vector2(36, 33)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_hf738")
 }
 
-[node name="ammo_count" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 22.0
-
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
 
-[connection signal="health_changed" from="health_component" to="." method="_on_health_component_health_changed"]
+[node name="ui_manager" type="Node" parent="."]
+script = ExtResource("8_hg6s5")
+
+[node name="ui" type="CanvasLayer" parent="ui_manager"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui_manager/ui"]
+offset_right = 1154.0
+offset_bottom = 647.0
+
+[node name="heart" type="TextureRect" parent="ui_manager/ui/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+
+[node name="heart" parent="ui_manager/ui/HBoxContainer/heart" instance=ExtResource("8_qthg5")]
+position = Vector2(36, 33)
+
+[node name="heart2" type="TextureRect" parent="ui_manager/ui/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+
+[node name="heart" parent="ui_manager/ui/HBoxContainer/heart2" instance=ExtResource("8_qthg5")]
+position = Vector2(36, 33)
+
+[node name="heart3" type="TextureRect" parent="ui_manager/ui/HBoxContainer"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+
+[node name="heart" parent="ui_manager/ui/HBoxContainer/heart3" instance=ExtResource("8_qthg5")]
+position = Vector2(36, 33)
+
+[node name="ammo" type="Label" parent="ui_manager/ui"]
+offset_left = 621.0
+offset_right = 718.0
+offset_bottom = 22.0
+text = "30/90"
+
+[connection signal="health_changed" from="health_component" to="ui_manager" method="_on_health_component_health_changed"]

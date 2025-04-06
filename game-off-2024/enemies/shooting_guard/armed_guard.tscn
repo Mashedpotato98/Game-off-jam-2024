@@ -1,33 +1,35 @@
 [gd_scene load_steps=10 format=3 uid="uid://c1tmm2jcdytfx"]
 
 [ext_resource type="PackedScene" uid="uid://dqgmd25610vvb" path="res://components/state_machine.tscn" id="1_8y2w8"]
-[ext_resource type="Texture2D" uid="uid://d1mfrq838sh8q" path="res://icon.svg" id="1_wkcyx"]
+[ext_resource type="Script" uid="uid://04b3tme7r1sa" path="res://enemies/shooting_guard/armed_guard.gd" id="1_idn55"]
 [ext_resource type="Script" uid="uid://bxumbj5veinm3" path="res://enemies/shooting_guard/states/sGuardAttack.gd" id="4_tls5a"]
 [ext_resource type="PackedScene" uid="uid://d22hi5vpihhpk" path="res://components/health_component.tscn" id="5_h3lyh"]
-[ext_resource type="Script" uid="uid://dgx5o2c4qw5oq" path="res://sGuardIdle.gd" id="5_strfs"]
+[ext_resource type="Script" uid="uid://dgx5o2c4qw5oq" path="res://enemies/shooting_guard/states/sGuardIdle.gd" id="5_strfs"]
 [ext_resource type="PackedScene" uid="uid://bca6c55glm5kd" path="res://components/hitbox_component.tscn" id="6_f6pn3"]
-[ext_resource type="PackedScene" uid="uid://bje4s5b71rnj7" path="res://components/hurtbox_component.tscn" id="7_iqw1l"]
 [ext_resource type="Script" uid="uid://c0t8iwb7mue2f" path="res://enemies/shooting_guard/weapon_manager.gd" id="9_f3jb8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_btj35"]
 radius = 103.044
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxbkf"]
+
 [node name="armed_guard" type="CharacterBody2D"]
+script = ExtResource("1_idn55")
 
-[node name="weapon_manager" type="Node" parent="."]
-script = ExtResource("9_f3jb8")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, -8, 7, -8, 7, -3, 4, 8, -6, 8, -8, -3)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_wkcyx")
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-2, 1)
+color = Color(0.81502, 3.58574e-06, 7.70092e-07, 1)
+polygon = PackedVector2Array(-6, -4, -4, 7, 6, 7, 9, -3, 9, -9, -5, -9)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="state_machine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("1_8y2w8")]
+initial_state = NodePath("sGuardIdle")
 
-[node name="state_machine" parent="." instance=ExtResource("1_8y2w8")]
-
-[node name="sGuardAttack" type="Node" parent="state_machine" node_paths=PackedStringArray("weapon_man", "enemy_parent", "navigation")]
+[node name="sGuardAttack" type="Node" parent="state_machine" node_paths=PackedStringArray("weapon_manager", "enemy_parent", "navigation")]
 script = ExtResource("4_tls5a")
-weapon_man = NodePath("../../weapon_manager")
+weapon_manager = NodePath("../../weapon_manager")
 enemy_parent = NodePath("../..")
 navigation = NodePath("../../NavigationAgent2D")
 spd = 80
@@ -48,12 +50,13 @@ max_health = 2
 [node name="hitboxComponent" parent="." instance=ExtResource("6_f6pn3")]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="hitboxComponent"]
-
-[node name="hurtboxComponent" parent="." instance=ExtResource("7_iqw1l")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtboxComponent"]
+visible = false
+shape = SubResource("RectangleShape2D_mxbkf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="weapon_manager" type="Node" parent="."]
+script = ExtResource("9_f3jb8")
 
 [connection signal="body_entered" from="playerDetector" to="state_machine/sGuardIdle" method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="playerDetector" to="state_machine/sGuardAttack" method="_on_player_detector_body_exited"]

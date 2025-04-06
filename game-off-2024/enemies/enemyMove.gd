@@ -1,5 +1,5 @@
 extends state_machine
-class_name enemyAttack
+class_name enemyMove
 
 @export var enemy_parent:CharacterBody2D
 @export var navigation:NavigationAgent2D

@@ -10,7 +10,6 @@ func _ready():
 	#initialize_weapons(element_count)
 
 func _process(delta: float) -> void:
-	#ammo_count.text = str(current_weapon.ammo + "/" + current_weapon.max_ammo)
 	if weapon_index == get_child_count():
 		weapon_index = 0
 	current_weapon = get_child(weapon_index)

@@ -1,18 +1,18 @@
 [gd_scene load_steps=7 format=3 uid="uid://f107wkvm4a4i"]
 
-[ext_resource type="Texture2D" uid="uid://v0ndm10bkmgl" path="res://assets/menu_background.png" id="1_0l62f"]
-[ext_resource type="FontFile" uid="uid://b2j6u2vs1ssry" path="res://assets/Roboto_Mono/static/RobotoMono-Bold.ttf" id="1_ui4qy"]
-[ext_resource type="StyleBox" uid="uid://cvutpeytx8gs5" path="res://assets/hover_box_flat.tres" id="2_5f6mu"]
-[ext_resource type="StyleBox" uid="uid://qsupi373ss5v" path="res://assets/new_style_box_flat.tres" id="3_hywx8"]
-[ext_resource type="Script" uid="uid://kwnd6tmty01u" path="res://levels/main_menu.gd" id="4_vrn1p"]
+[ext_resource type="FontFile" uid="uid://b2j6u2vs1ssry" path="res://assets/Roboto_Mono/static/RobotoMono-Bold.ttf" id="1_lgq7d"]
+[ext_resource type="StyleBox" uid="uid://qsupi373ss5v" path="res://assets/new_style_box_flat.tres" id="2_oesem"]
+[ext_resource type="StyleBox" uid="uid://cvutpeytx8gs5" path="res://assets/hover_box_flat.tres" id="3_pvjef"]
+[ext_resource type="Script" uid="uid://kwnd6tmty01u" path="res://levels/ui/main_menu.gd" id="4_17afg"]
+[ext_resource type="Texture2D" uid="uid://v0ndm10bkmgl" path="res://assets/menu_background.png" id="5_orq2y"]
 
 [sub_resource type="Theme" id="Theme_1m5v3"]
-default_font = ExtResource("1_ui4qy")
+default_font = ExtResource("1_lgq7d")
 Button/font_sizes/font_size = 28
-Button/fonts/font = ExtResource("1_ui4qy")
-Button/styles/disabled = ExtResource("3_hywx8")
-Button/styles/hover = ExtResource("2_5f6mu")
-Button/styles/normal = ExtResource("3_hywx8")
+Button/fonts/font = ExtResource("1_lgq7d")
+Button/styles/disabled = ExtResource("2_oesem")
+Button/styles/hover = ExtResource("3_pvjef")
+Button/styles/normal = ExtResource("2_oesem")
 
 [node name="Main_menu" type="Control"]
 layout_mode = 3
@@ -22,7 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_1m5v3")
-script = ExtResource("4_vrn1p")
+script = ExtResource("4_17afg")
 
 [node name="Menu" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -37,7 +37,7 @@ offset_right = 120.5
 offset_bottom = 136.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_0l62f")
+texture = ExtResource("5_orq2y")
 region_rect = Rect2(0, 0, 46, 46)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
@@ -65,3 +65,7 @@ text = "Settings"
 [node name="Exit" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
+
+[connection signal="pressed" from="Menu/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

@@ -8,26 +8,37 @@ class_name gun_class
 @export var muzzle:Marker2D
 @export var anim:AnimationPlayer
 
+#region shooting variables
 @export var bullet_count:int
 @export var arc:int
 @export_range(0,50) var fireRate
 
-var recoil_angle = 0.0
 @export var max_recoil:int
+var recoil_angle = 0.0
+#endregion
 
+#region can do something
 var can_shoot:bool = true
 var reloading:bool = false
+#endregion
 
+#region ammo variables
 @export var total_ammo:int
-var mag_ammo:int
 @export var max_mag_ammo:int
+@export_range(0,50) var reload_time
+var mag_ammo:int
+#endregion
 
-
+#region misc/no idea 
 var offset:Vector2 = Vector2(0, 0)
 var radius = 30
+#endregion
 
 func _ready() -> void:
 	mag_ammo = max_mag_ammo
+
+func _process(delta: float) -> void:
+	gun.position = get_parent().global_position
 
 func fire(direction):
 	if can_shoot == true:
@@ -61,5 +72,20 @@ func reload():
 
 		mag_ammo = min(mag_ammo + ammo_needed, max_mag_ammo)
 		total_ammo -= ammo_needed
+		reloading = false
+		can_shoot = true
+
+
+func reload_2():
+	if mag_ammo < max_mag_ammo:
+		reloading = true
+		can_shoot = false
+
+		var ammo_needed:int = max_mag_ammo - mag_ammo
+		mag_ammo += ammo_needed
+		total_ammo -= ammo_needed
+
+		await get_tree().create_timer(1/reload_time).timeout
+
 		reloading = false
 		can_shoot = true
