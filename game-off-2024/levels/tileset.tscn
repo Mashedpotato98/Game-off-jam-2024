@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://dja8yaueefmmd"]
 
-[ext_resource type="Texture2D" uid="uid://c8jr6pp76cl1i" path="res://assets/gameoff/tileset.png" id="1_aa7oh"]
-[ext_resource type="Texture2D" uid="uid://cphvr4w1tysbj" path="res://objects.png" id="2_ayxji"]
+[ext_resource type="Texture2D" uid="uid://c068q7twwss61" path="res://assets/gameoff/tileset.png" id="1_aa7oh"]
+[ext_resource type="Texture2D" uid="uid://llmqt1ip87cj" path="res://objects.png" id="2_ayxji"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sinkx"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)

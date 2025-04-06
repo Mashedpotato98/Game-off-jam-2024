@@ -7,3 +7,4 @@ var item
 
 func _ready() -> void:
 	item = item_packed.instantiate()
+	print(item)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bu3rnrnqvv6vs"]
 
-[ext_resource type="Texture2D" uid="uid://hex5xjx00dbk" path="res://icon.svg" id="1_0tofv"]
-[ext_resource type="Script" path="res://guns/pickups/m_7_pickup.gd" id="1_mss5t"]
+[ext_resource type="Texture2D" uid="uid://d1mfrq838sh8q" path="res://icon.svg" id="1_0tofv"]
+[ext_resource type="Script" uid="uid://cbdunriuq24s6" path="res://guns/pickups/m_7_pickup.gd" id="1_mss5t"]
 [ext_resource type="PackedScene" uid="uid://bdw2fgswr67pa" path="res://guns/all guns/m_714.tscn" id="2_ackrj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vs2s"]

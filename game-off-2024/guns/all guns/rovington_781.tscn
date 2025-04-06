@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://u30o524rdf0o"]
 
 [ext_resource type="PackedScene" uid="uid://c5qib7cvdeeah" path="res://guns/gun_base.tscn" id="1_54dj0"]
-[ext_resource type="Script" path="res://guns/rovington/rovington_781.gd" id="2_vvvgg"]
+[ext_resource type="Script" uid="uid://dq0wtlb3pc5nk" path="res://guns/rovington/rovington_781.gd" id="2_vvvgg"]
 [ext_resource type="PackedScene" uid="uid://bg6evui0wfrx5" path="res://guns/bullet.tscn" id="3_xcnrv"]
 
 [node name="rovington_781" node_paths=PackedStringArray("gun", "muzzle", "anim") instance=ExtResource("1_54dj0")]

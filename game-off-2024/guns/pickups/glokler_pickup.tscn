@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c5wkjrhhp5qng"]
 
-[ext_resource type="Script" path="res://guns/pickups/m_7_pickup.gd" id="1_75xw7"]
+[ext_resource type="Script" uid="uid://cbdunriuq24s6" path="res://guns/pickups/m_7_pickup.gd" id="1_75xw7"]
 [ext_resource type="PackedScene" uid="uid://bdw2fgswr67pa" path="res://guns/all guns/m_714.tscn" id="2_0hoqv"]
-[ext_resource type="Texture2D" uid="uid://b5p6r5utr4t0m" path="res://icon.svg" id="3_x35ft"]
+[ext_resource type="Texture2D" uid="uid://d1mfrq838sh8q" path="res://icon.svg" id="3_x35ft"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vs2s"]
 size = Vector2(24, 24)

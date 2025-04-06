@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://c6q4oypalgclh"]
 
 [ext_resource type="PackedScene" uid="uid://dqgmd25610vvb" path="res://components/state_machine.tscn" id="1_7bb8u"]
-[ext_resource type="Script" path="res://enemies/spider_enemy/states/SpiderAttack.gd" id="2_hqlba"]
-[ext_resource type="Script" path="res://enemies/spider_enemy/states/spiderMove.gd" id="3_gl46y"]
+[ext_resource type="Script" uid="uid://d2v11cdex5hqs" path="res://enemies/spider_enemy/states/SpiderAttack.gd" id="2_hqlba"]
+[ext_resource type="Script" uid="uid://cjmu40ggjlqls" path="res://enemies/spider_enemy/states/spiderMove.gd" id="3_gl46y"]
 [ext_resource type="PackedScene" uid="uid://dbogwxd842lls" path="res://enemies/spider_enemy/claw.tscn" id="3_rll4b"]
-[ext_resource type="Texture2D" uid="uid://hex5xjx00dbk" path="res://icon.svg" id="4_2ebil"]
-[ext_resource type="Texture2D" uid="uid://dq6vnxt0m1fyx" path="res://assets/light.png" id="5_2icvh"]
+[ext_resource type="Texture2D" uid="uid://d1mfrq838sh8q" path="res://icon.svg" id="4_2ebil"]
+[ext_resource type="Texture2D" uid="uid://cpmitqtk81anu" path="res://assets/light.png" id="5_2icvh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kqux"]
 radius = 138.362

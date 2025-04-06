@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ccl3ibilv02qo"]
 
-[ext_resource type="Script" path="res://guns/enemy_gun/enemy_bullet.gd" id="1_hw4cv"]
-[ext_resource type="Texture2D" uid="uid://hex5xjx00dbk" path="res://icon.svg" id="2_boq8m"]
+[ext_resource type="Script" uid="uid://s3fws28gfwjl" path="res://guns/enemy_gun/enemy_bullet.gd" id="1_hw4cv"]
+[ext_resource type="Texture2D" uid="uid://d1mfrq838sh8q" path="res://icon.svg" id="2_boq8m"]
 [ext_resource type="PackedScene" uid="uid://bje4s5b71rnj7" path="res://components/hurtbox_component.tscn" id="3_lnt6e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qncsx"]

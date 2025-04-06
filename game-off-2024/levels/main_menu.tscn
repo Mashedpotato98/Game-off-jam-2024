@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://f107wkvm4a4i"]
 
-[ext_resource type="Texture2D" uid="uid://be4hdmef1mqrg" path="res://assets/menu_background.png" id="1_0l62f"]
-[ext_resource type="FontFile" uid="uid://7ny5jhapsx33" path="res://assets/Roboto_Mono/static/RobotoMono-Bold.ttf" id="1_ui4qy"]
+[ext_resource type="Texture2D" uid="uid://v0ndm10bkmgl" path="res://assets/menu_background.png" id="1_0l62f"]
+[ext_resource type="FontFile" uid="uid://b2j6u2vs1ssry" path="res://assets/Roboto_Mono/static/RobotoMono-Bold.ttf" id="1_ui4qy"]
 [ext_resource type="StyleBox" uid="uid://cvutpeytx8gs5" path="res://assets/hover_box_flat.tres" id="2_5f6mu"]
 [ext_resource type="StyleBox" uid="uid://qsupi373ss5v" path="res://assets/new_style_box_flat.tres" id="3_hywx8"]
-[ext_resource type="Script" path="res://levels/main_menu.gd" id="4_vrn1p"]
+[ext_resource type="Script" uid="uid://kwnd6tmty01u" path="res://levels/main_menu.gd" id="4_vrn1p"]
 
 [sub_resource type="Theme" id="Theme_1m5v3"]
 default_font = ExtResource("1_ui4qy")

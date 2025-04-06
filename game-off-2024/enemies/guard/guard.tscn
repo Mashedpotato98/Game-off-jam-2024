@@ -1,17 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://cqf3y3vbgxl1w"]
+[gd_scene load_steps=11 format=3 uid="uid://cqf3y3vbgxl1w"]
 
-[ext_resource type="Script" path="res://enemies/guard/guard.gd" id="1_ant2o"]
-[ext_resource type="Texture2D" uid="uid://b5p6r5utr4t0m" path="res://icon.svg" id="2_f12uh"]
+[ext_resource type="Script" uid="uid://k08kjpkslals" path="res://enemies/guard/guard.gd" id="1_ant2o"]
 [ext_resource type="PackedScene" uid="uid://dqgmd25610vvb" path="res://components/state_machine.tscn" id="2_ioyy7"]
 [ext_resource type="PackedScene" uid="uid://8gjof1e4026n" path="res://enemies/components/wander.tscn" id="2_v8aeu"]
-[ext_resource type="Script" path="res://enemies/guard/states/guardWander.gd" id="4_ax633"]
-[ext_resource type="Script" path="res://enemies/guard/states/guardAttack.gd" id="5_wocvv"]
-[ext_resource type="Texture2D" uid="uid://dpbirwwtjijgo" path="res://assets/light.png" id="7_14nkr"]
+[ext_resource type="Script" uid="uid://bhhk40qmaqvyi" path="res://enemies/guard/states/guardWander.gd" id="4_ax633"]
+[ext_resource type="Script" uid="uid://ubm820bsngcj" path="res://enemies/guard/states/guardAttack.gd" id="5_wocvv"]
+[ext_resource type="Texture2D" uid="uid://cpmitqtk81anu" path="res://assets/light.png" id="7_14nkr"]
 [ext_resource type="PackedScene" uid="uid://bca6c55glm5kd" path="res://components/hitbox_component.tscn" id="8_mhclb"]
 [ext_resource type="PackedScene" uid="uid://d22hi5vpihhpk" path="res://components/health_component.tscn" id="9_tdwsp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ae6yd"]
-size = Vector2(363, 414)
+[sub_resource type="CircleShape2D" id="CircleShape2D_toys2"]
+radius = 93.0054
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vho0r"]
 size = Vector2(40, 39)
@@ -19,11 +18,13 @@ size = Vector2(40, 39)
 [node name="guard" type="CharacterBody2D"]
 script = ExtResource("1_ant2o")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, -9, 8, -9, 0, 10)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_f12uh")
+[node name="character_polyon" type="Polygon2D" parent="."]
+color = Color(0.705882, 0, 0.0784314, 1)
+polygon = PackedVector2Array(-7, -9, 8, -9, 0, 10)
+uv = PackedVector2Array(-7, -9, 8, -9, 0, 10)
 
 [node name="wander" parent="." instance=ExtResource("2_v8aeu")]
 
@@ -50,8 +51,7 @@ accel = 50
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_detector"]
-position = Vector2(-1.5, 5)
-shape = SubResource("RectangleShape2D_ae6yd")
+shape = SubResource("CircleShape2D_toys2")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 texture = ExtResource("7_14nkr")

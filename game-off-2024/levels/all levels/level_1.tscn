@@ -27,7 +27,7 @@ position = Vector2(574, 413)
 position = Vector2(205, 398)
 
 [node name="armed_guard" parent="enemyManager" instance=ExtResource("5_ldgrw")]
-position = Vector2(109, 109)
+position = Vector2(131, 256)
 
 [node name="Floor_changer" parent="." instance=ExtResource("4_rg3ig")]
 position = Vector2(365, 680)
