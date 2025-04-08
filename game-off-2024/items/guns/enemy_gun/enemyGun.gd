@@ -1,4 +1,5 @@
 extends gun_class
+class_name enemy_gun
 
 var player:CharacterBody2D
 
@@ -8,7 +9,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	muzzle.look_at(player.global_position)
 
-
-func _on_timer_timeout() -> void:
+func shoot():
+	print('1')
 	fire(muzzle.global_rotation)
-	$Timer.start()

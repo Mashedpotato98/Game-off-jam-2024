@@ -1,4 +1,4 @@
-extends enemyAttack
+extends enemyMove
 class_name spiderMove
 
 @export var ray:RayCast2D

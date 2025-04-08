@@ -9,15 +9,13 @@ extends Node
 #endregion
 
 #region health
-var hearts_list:Array = [TextureRect]
+var hearts_list:Array = []
 #endregion
 
 func _ready() -> void:
-	for child in hearts_parent.get_children():
-		hearts_list.append(child)
-
-func _process(delta: float) -> void:
-	ammo_count.text = str(weapon_manager.current_weapon.mag_ammo) + "/" + str(weapon_manager.current_weapon.total_ammo)
+	update_ammo_count()
+	for i in hearts_parent.get_children():
+		hearts_list.append(i)
 
 func hearts_update():
 	for i in range(hearts_list.size()):
@@ -30,3 +28,6 @@ func hearts_update():
 
 func _on_health_component_health_changed() -> void:
 	hearts_update()
+
+func update_ammo_count():
+	ammo_count.text = str(weapon_manager.current_weapon.mag_ammo) + "/" + str(weapon_manager.current_weapon.total_ammo)

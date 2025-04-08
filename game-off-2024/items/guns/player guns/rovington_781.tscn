@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://u30o524rdf0o"]
+
+[ext_resource type="PackedScene" uid="uid://c5qib7cvdeeah" path="res://items/guns/gun_base.tscn" id="1_54dj0"]
+[ext_resource type="Script" uid="uid://dq0wtlb3pc5nk" path="res://items/guns/player guns/rovington/rovington_781.gd" id="2_vvvgg"]
+[ext_resource type="PackedScene" uid="uid://bg6evui0wfrx5" path="res://items/guns/bullet.tscn" id="3_xcnrv"]
+[ext_resource type="Texture2D" uid="uid://btefvtpc65x62" path="res://item.png" id="4_xeup4"]
+
+[node name="rovington_781" node_paths=PackedStringArray("gun", "muzzle", "anim") instance=ExtResource("1_54dj0")]
+script = ExtResource("2_vvvgg")
+gun = NodePath(".")
+bullet = ExtResource("3_xcnrv")
+muzzle = NodePath("Muzzle")
+anim = NodePath("AnimationPlayer")
+bullet_count = 3
+arc = 60
+fireRate = 1.0
+max_recoil = 30
+total_ammo = 30
+max_mag_ammo = 5
+
+[node name="Muzzle" parent="." index="0"]
+position = Vector2(10, -2)
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("4_xeup4")
+region_enabled = true
+region_rect = Rect2(16, 48, 32, 16)

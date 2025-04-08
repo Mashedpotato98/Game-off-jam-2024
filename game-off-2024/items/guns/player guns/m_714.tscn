@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bdw2fgswr67pa"]
 
-[ext_resource type="PackedScene" uid="uid://c5qib7cvdeeah" path="res://guns/gun_base.tscn" id="1_8eghd"]
-[ext_resource type="Script" uid="uid://bwsfv1xxs754d" path="res://guns/m_714/m_714.gd" id="2_fhx62"]
-[ext_resource type="PackedScene" uid="uid://bg6evui0wfrx5" path="res://guns/bullet.tscn" id="3_3b3tw"]
-[ext_resource type="Texture2D" uid="uid://d1mfrq838sh8q" path="res://icon.svg" id="3_ctk61"]
+[ext_resource type="PackedScene" uid="uid://c5qib7cvdeeah" path="res://items/guns/gun_base.tscn" id="1_8eghd"]
+[ext_resource type="Script" uid="uid://bwsfv1xxs754d" path="res://items/guns/player guns/m_714.gd" id="2_fhx62"]
+[ext_resource type="PackedScene" uid="uid://bg6evui0wfrx5" path="res://items/guns/bullet.tscn" id="3_3b3tw"]
+[ext_resource type="Texture2D" uid="uid://btefvtpc65x62" path="res://item.png" id="4_lbd16"]
 
 [sub_resource type="Animation" id="Animation_2jj7o"]
 length = 0.001
@@ -55,11 +55,16 @@ fireRate = 4.0
 max_recoil = 600
 total_ammo = 90
 max_mag_ammo = 30
-reload_time = 1.0
+reload_time = 0.3
+
+[node name="Muzzle" parent="." index="0"]
+position = Vector2(16, -3)
 
 [node name="Sprite2D" parent="." index="1"]
 scale = Vector2(0.2, 0.3)
-texture = ExtResource("3_ctk61")
+texture = ExtResource("4_lbd16")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 16)
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {

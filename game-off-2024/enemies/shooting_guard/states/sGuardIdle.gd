@@ -5,4 +5,4 @@ var entered:bool = false
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
 	entered = true
-	#Transitioned.emit(self,"sGuardAttack")
+	Transitioned.emit(self,"sGuardMove")

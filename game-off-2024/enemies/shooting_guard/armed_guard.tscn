@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://dqgmd25610vvb" path="res://components/state_machine.tscn" id="1_8y2w8"]
 [ext_resource type="Script" uid="uid://04b3tme7r1sa" path="res://enemies/shooting_guard/armed_guard.gd" id="1_idn55"]
-[ext_resource type="Script" uid="uid://bxumbj5veinm3" path="res://enemies/shooting_guard/states/sGuardAttack.gd" id="4_tls5a"]
+[ext_resource type="Script" uid="uid://bxumbj5veinm3" path="res://enemies/shooting_guard/states/sGuardMove.gd" id="4_tls5a"]
 [ext_resource type="PackedScene" uid="uid://d22hi5vpihhpk" path="res://components/health_component.tscn" id="5_h3lyh"]
 [ext_resource type="Script" uid="uid://dgx5o2c4qw5oq" path="res://enemies/shooting_guard/states/sGuardIdle.gd" id="5_strfs"]
 [ext_resource type="PackedScene" uid="uid://bca6c55glm5kd" path="res://components/hitbox_component.tscn" id="6_f6pn3"]
-[ext_resource type="Script" uid="uid://c0t8iwb7mue2f" path="res://enemies/shooting_guard/weapon_manager.gd" id="9_f3jb8"]
+[ext_resource type="Script" uid="uid://c0t8iwb7mue2f" path="res://enemies/shooting_guard/weapon_manager_enemy.gd" id="9_f3jb8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_btj35"]
 radius = 103.044
@@ -14,6 +14,8 @@ radius = 103.044
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxbkf"]
 
 [node name="armed_guard" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_idn55")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -27,7 +29,7 @@ polygon = PackedVector2Array(-6, -4, -4, 7, 6, 7, 9, -3, 9, -9, -5, -9)
 [node name="state_machine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("1_8y2w8")]
 initial_state = NodePath("sGuardIdle")
 
-[node name="sGuardAttack" type="Node" parent="state_machine" node_paths=PackedStringArray("weapon_manager", "enemy_parent", "navigation")]
+[node name="sGuardMove" type="Node" parent="state_machine" node_paths=PackedStringArray("weapon_manager", "enemy_parent", "navigation")]
 script = ExtResource("4_tls5a")
 weapon_manager = NodePath("../../weapon_manager")
 enemy_parent = NodePath("../..")
@@ -55,8 +57,10 @@ shape = SubResource("RectangleShape2D_mxbkf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="weapon_manager" type="Node" parent="."]
+[node name="weapon_manager" type="Node2D" parent="."]
 script = ExtResource("9_f3jb8")
 
+[node name="ShootTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="playerDetector" to="state_machine/sGuardIdle" method="_on_player_detector_body_entered"]
-[connection signal="body_exited" from="playerDetector" to="state_machine/sGuardAttack" method="_on_player_detector_body_exited"]
+[connection signal="body_exited" from="playerDetector" to="state_machine/sGuardMove" method="_on_player_detector_body_exited"]

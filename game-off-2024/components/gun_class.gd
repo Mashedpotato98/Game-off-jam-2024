@@ -37,12 +37,12 @@ var radius = 30
 func _ready() -> void:
 	mag_ammo = max_mag_ammo
 
-func _process(delta: float) -> void:
-	gun.position = get_parent().global_position
-
 func fire(direction):
-	if can_shoot == true:
+	if can_shoot == true and mag_ammo > 0:
 		can_shoot = false
+		if mag_ammo <= bullet_count:
+			bullet_count = mag_ammo
+		mag_ammo -= bullet_count
 		anim.play("shoot")
 		for i in bullet_count:
 			var bullet_ins = bullet.instantiate()
@@ -61,31 +61,18 @@ func fire(direction):
 			get_tree().root.call_deferred("add_child",bullet_ins)
 		await get_tree().create_timer(1 / fireRate).timeout
 		can_shoot = true
-		mag_ammo -= bullet_count
 
 func reload():
-	if mag_ammo < max_mag_ammo and reloading == false:
-		reloading = true
-		can_shoot = false
-		var ammo_needed = max_mag_ammo - mag_ammo
-		ammo_needed = min(ammo_needed, total_ammo)
-
-		mag_ammo = min(mag_ammo + ammo_needed, max_mag_ammo)
-		total_ammo -= ammo_needed
-		reloading = false
-		can_shoot = true
-
-
-func reload_2():
 	if mag_ammo < max_mag_ammo:
 		reloading = true
 		can_shoot = false
 
-		var ammo_needed:int = max_mag_ammo - mag_ammo
+		var ammo_needed = max_mag_ammo - mag_ammo
+		ammo_needed = min(ammo_needed, total_ammo)
+
+		#await get_tree().create_timer(reload_time).timeout
+
 		mag_ammo += ammo_needed
 		total_ammo -= ammo_needed
-
-		await get_tree().create_timer(1/reload_time).timeout
-
 		reloading = false
 		can_shoot = true

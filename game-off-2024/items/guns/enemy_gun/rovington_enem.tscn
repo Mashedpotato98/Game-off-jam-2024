@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://2cpfgodwmeey"]
+
+[ext_resource type="PackedScene" uid="uid://c5qib7cvdeeah" path="res://items/guns/gun_base.tscn" id="1_iruvb"]
+[ext_resource type="Script" uid="uid://d0ymxgcxyjlk7" path="res://items/guns/enemy_gun/enemyGun.gd" id="2_1wfo2"]
+[ext_resource type="PackedScene" uid="uid://bg6evui0wfrx5" path="res://items/guns/bullet.tscn" id="3_a32d5"]
+
+[node name="rovington_enem" node_paths=PackedStringArray("gun", "muzzle", "anim") instance=ExtResource("1_iruvb")]
+script = ExtResource("2_1wfo2")
+gun = NodePath(".")
+bullet = ExtResource("3_a32d5")
+muzzle = NodePath("Muzzle")
+anim = NodePath("AnimationPlayer")
+bullet_count = 3

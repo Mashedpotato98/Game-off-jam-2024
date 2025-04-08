@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bep4p5jfanhqy"]
 
 [ext_resource type="PackedScene" uid="uid://bv2g5wgeeo25m" path="res://player/player.tscn" id="1_flfnn"]
-[ext_resource type="PackedScene" uid="uid://bu3rnrnqvv6vs" path="res://guns/pickups/m_7_pickup.tscn" id="2_81ihu"]
+[ext_resource type="PackedScene" uid="uid://bu3rnrnqvv6vs" path="res://items/guns/pickups/m_7_pickup.tscn" id="2_81ihu"]
 [ext_resource type="PackedScene" uid="uid://c1tmm2jcdytfx" path="res://enemies/shooting_guard/armed_guard.tscn" id="3_6uqi0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m44ab"]
@@ -26,4 +26,4 @@ color = Color(0, 0, 0, 1)
 position = Vector2(236, 117)
 
 [node name="armed_guard" parent="." instance=ExtResource("3_6uqi0")]
-position = Vector2(170, 245)
+position = Vector2(173, 260)

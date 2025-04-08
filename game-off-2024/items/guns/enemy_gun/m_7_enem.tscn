@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1e241stfnki"]
+
+[ext_resource type="PackedScene" uid="uid://c5qib7cvdeeah" path="res://items/guns/gun_base.tscn" id="1_bqj07"]
+[ext_resource type="Script" uid="uid://d0ymxgcxyjlk7" path="res://items/guns/enemy_gun/enemyGun.gd" id="2_bsf2k"]
+
+[sub_resource type="Animation" id="Animation_2mdpe"]
+resource_name = "shoot"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fy5e7"]
+_data = {
+&"shoot": SubResource("Animation_2mdpe")
+}
+
+[node name="m7_enem" instance=ExtResource("1_bqj07")]
+script = ExtResource("2_bsf2k")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_fy5e7")
+}
