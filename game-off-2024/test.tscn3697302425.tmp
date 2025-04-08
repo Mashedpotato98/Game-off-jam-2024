@@ -1,16 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bep4p5jfanhqy"]
+[gd_scene load_steps=4 format=3 uid="uid://bep4p5jfanhqy"]
 
 [ext_resource type="PackedScene" uid="uid://bv2g5wgeeo25m" path="res://player/player.tscn" id="1_flfnn"]
 [ext_resource type="PackedScene" uid="uid://c1tmm2jcdytfx" path="res://enemies/shooting_guard/armed_guard.tscn" id="3_6uqi0"]
-[ext_resource type="Texture2D" uid="uid://v0ndm10bkmgl" path="res://assets/menu_background.png" id="3_ppyta"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m44ab"]
 vertices = PackedVector2Array(1143.95, 13.9922, 1141.04, 637, 7, 637.992, 7, 13)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-3, 3, 1154, 4, 1151, 647, -3, 648)])
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykrsh"]
-size = Vector2(45, 84)
 
 [node name="Test" type="Node2D"]
 
@@ -27,18 +23,3 @@ color = Color(0, 0, 0, 1)
 
 [node name="armed_guard" parent="." instance=ExtResource("3_6uqi0")]
 position = Vector2(173, 260)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(207, 234)
-collision_layer = 2
-collision_mask = 0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(0, 23.5)
-scale = Vector2(1, 2.02174)
-texture = ExtResource("3_ppyta")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-0.5, 22)
-shape = SubResource("RectangleShape2D_ykrsh")

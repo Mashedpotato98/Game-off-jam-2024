@@ -5,6 +5,6 @@ extends gun_class
 	#var dir = gun.get_global_mouse_position()
 	#gun.look_at(dir)
 
-func shoot():
+func use():
 	fire(muzzle.global_rotation)
 	#get_parent().ui.update_ammo_count()

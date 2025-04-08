@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1tmm2jcdytfx"]
+[gd_scene load_steps=11 format=3 uid="uid://c1tmm2jcdytfx"]
 
 [ext_resource type="PackedScene" uid="uid://dqgmd25610vvb" path="res://components/state_machine.tscn" id="1_8y2w8"]
 [ext_resource type="Script" uid="uid://04b3tme7r1sa" path="res://enemies/shooting_guard/armed_guard.gd" id="1_idn55"]
 [ext_resource type="Script" uid="uid://bxumbj5veinm3" path="res://enemies/shooting_guard/states/sGuardMove.gd" id="4_tls5a"]
 [ext_resource type="PackedScene" uid="uid://d22hi5vpihhpk" path="res://components/health_component.tscn" id="5_h3lyh"]
+[ext_resource type="Script" uid="uid://cysum8efffnl6" path="res://enemies/guard/states/sGuardShoot.gd" id="5_mxbkf"]
 [ext_resource type="Script" uid="uid://dgx5o2c4qw5oq" path="res://enemies/shooting_guard/states/sGuardIdle.gd" id="5_strfs"]
 [ext_resource type="PackedScene" uid="uid://bca6c55glm5kd" path="res://components/hitbox_component.tscn" id="6_f6pn3"]
 [ext_resource type="Script" uid="uid://c0t8iwb7mue2f" path="res://enemies/shooting_guard/weapon_manager_enemy.gd" id="9_f3jb8"]
@@ -29,18 +30,29 @@ polygon = PackedVector2Array(-6, -4, -4, 7, 6, 7, 9, -3, 9, -9, -5, -9)
 [node name="state_machine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("1_8y2w8")]
 initial_state = NodePath("sGuardIdle")
 
-[node name="sGuardMove" type="Node" parent="state_machine" node_paths=PackedStringArray("weapon_manager", "enemy_parent", "navigation")]
+[node name="sGuardIdle" type="Node" parent="state_machine" node_paths=PackedStringArray("enem", "player_scanner")]
+script = ExtResource("5_strfs")
+enem = NodePath("../..")
+player_scanner = NodePath("../../player_scanner")
+
+[node name="sGuardMove" type="Node" parent="state_machine" node_paths=PackedStringArray("weapon_manager", "player_scanner", "enemy_parent", "navigation")]
 script = ExtResource("4_tls5a")
 weapon_manager = NodePath("../../weapon_manager")
+player_scanner = NodePath("../../player_scanner")
 enemy_parent = NodePath("../..")
 navigation = NodePath("../../NavigationAgent2D")
 spd = 80
 accel = 20
 
-[node name="sGuardIdle" type="Node" parent="state_machine"]
-script = ExtResource("5_strfs")
+[node name="sGuardShoot" type="Node" parent="state_machine" node_paths=PackedStringArray("enem", "weapon_manager", "player_scanner")]
+script = ExtResource("5_mxbkf")
+enem = NodePath("../..")
+weapon_manager = NodePath("../../weapon_manager")
+player_scanner = NodePath("../../player_scanner")
+metadata/_custom_type_script = "uid://cysum8efffnl6"
 
 [node name="playerDetector" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetector"]
@@ -62,5 +74,10 @@ script = ExtResource("9_f3jb8")
 
 [node name="ShootTimer" type="Timer" parent="."]
 
+[node name="player_scanner" type="RayCast2D" parent="."]
+target_position = Vector2(129, 0)
+collision_mask = 3
+
 [connection signal="body_entered" from="playerDetector" to="state_machine/sGuardIdle" method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="playerDetector" to="state_machine/sGuardMove" method="_on_player_detector_body_exited"]
+[connection signal="body_exited" from="playerDetector" to="state_machine/sGuardIdle" method="_on_player_detector_body_exited"]

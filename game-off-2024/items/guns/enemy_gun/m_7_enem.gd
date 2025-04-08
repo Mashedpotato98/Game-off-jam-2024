@@ -1,1 +1,0 @@
-extends gun_class

@@ -1,4 +1,4 @@
 extends gun_class
 
-func shoot():
+func use():
 	fire(muzzle.global_rotation)

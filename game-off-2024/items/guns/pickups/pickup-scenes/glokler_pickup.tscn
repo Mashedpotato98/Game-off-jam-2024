@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5wkjrhhp5qng"]
+
+[ext_resource type="PackedScene" uid="uid://cu1e1qin3b20a" path="res://items/guns/pickups/pickup-scenes/Pickup.tscn" id="1_4wlyi"]
+
+[node name="Glokler_pickup" instance=ExtResource("1_4wlyi")]

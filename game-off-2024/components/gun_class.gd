@@ -1,12 +1,9 @@
 
-extends Node
+extends item_class
 class_name gun_class
-
-@export var gun:Node2D
 
 @export var bullet:PackedScene
 @export var muzzle:Marker2D
-@export var anim:AnimationPlayer
 
 #region shooting variables
 @export var bullet_count:int

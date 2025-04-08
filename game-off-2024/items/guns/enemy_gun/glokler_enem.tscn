@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://btl678p7vlo4p"]
-
-[ext_resource type="PackedScene" uid="uid://c5qib7cvdeeah" path="res://items/guns/gun_base.tscn" id="1_1iemk"]
-[ext_resource type="Script" uid="uid://d0ymxgcxyjlk7" path="res://items/guns/enemy_gun/enemyGun.gd" id="2_fnlrd"]
-
-[node name="glokler_enem" instance=ExtResource("1_1iemk")]
-script = ExtResource("2_fnlrd")

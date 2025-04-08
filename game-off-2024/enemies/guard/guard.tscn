@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dqgmd25610vvb" path="res://components/state_machine.tscn" id="2_ioyy7"]
 [ext_resource type="PackedScene" uid="uid://8gjof1e4026n" path="res://enemies/components/wander.tscn" id="2_v8aeu"]
 [ext_resource type="Script" uid="uid://bhhk40qmaqvyi" path="res://enemies/guard/states/guardWander.gd" id="4_ax633"]
-[ext_resource type="Script" uid="uid://ubm820bsngcj" path="res://enemies/guard/states/guardAttack.gd" id="5_wocvv"]
+[ext_resource type="Script" uid="uid://ubm820bsngcj" path="res://enemies/guard/states/guardMove.gd" id="5_wocvv"]
 [ext_resource type="Texture2D" uid="uid://cpmitqtk81anu" path="res://assets/light.png" id="7_14nkr"]
 [ext_resource type="PackedScene" uid="uid://bca6c55glm5kd" path="res://components/hitbox_component.tscn" id="8_mhclb"]
 [ext_resource type="PackedScene" uid="uid://d22hi5vpihhpk" path="res://components/health_component.tscn" id="9_tdwsp"]

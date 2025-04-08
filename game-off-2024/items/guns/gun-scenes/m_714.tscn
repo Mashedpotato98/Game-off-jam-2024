@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bdw2fgswr67pa"]
 
 [ext_resource type="PackedScene" uid="uid://c5qib7cvdeeah" path="res://items/guns/gun_base.tscn" id="1_8eghd"]
-[ext_resource type="Script" uid="uid://bwsfv1xxs754d" path="res://items/guns/player guns/m_714.gd" id="2_fhx62"]
+[ext_resource type="Script" uid="uid://bwsfv1xxs754d" path="res://items/guns/gun-scripts/m_714.gd" id="2_fhx62"]
 [ext_resource type="PackedScene" uid="uid://bg6evui0wfrx5" path="res://items/guns/bullet.tscn" id="3_3b3tw"]
 [ext_resource type="Texture2D" uid="uid://btefvtpc65x62" path="res://item.png" id="4_lbd16"]
 
@@ -44,18 +44,19 @@ _data = {
 &"shoot": SubResource("Animation_4mg5u")
 }
 
-[node name="m_714" node_paths=PackedStringArray("gun", "muzzle", "anim") instance=ExtResource("1_8eghd")]
+[node name="m_714" node_paths=PackedStringArray("muzzle", "item", "anim", "sprite") instance=ExtResource("1_8eghd")]
 script = ExtResource("2_fhx62")
-gun = NodePath(".")
 bullet = ExtResource("3_3b3tw")
 muzzle = NodePath("Muzzle")
-anim = NodePath("AnimationPlayer")
 bullet_count = 1
 fireRate = 4.0
 max_recoil = 600
 total_ammo = 90
 max_mag_ammo = 30
 reload_time = 0.3
+item = NodePath(".")
+anim = NodePath("AnimationPlayer")
+sprite = NodePath("Sprite2D")
 
 [node name="Muzzle" parent="." index="0"]
 position = Vector2(16, -3)

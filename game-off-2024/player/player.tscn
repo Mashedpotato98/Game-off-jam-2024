@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://bejo53i3s3xkf" path="res://assets/player.png" id="2_umjby"]
 [ext_resource type="Texture2D" uid="uid://cpmitqtk81anu" path="res://assets/light.png" id="3_wr5l3"]
 [ext_resource type="Script" uid="uid://ck1hoeyk4nkhy" path="res://player/managers/weapon_manager.gd" id="5_dry04"]
-[ext_resource type="PackedScene" uid="uid://bdw2fgswr67pa" path="res://items/guns/player guns/m_714.tscn" id="5_hg6s5"]
-[ext_resource type="PackedScene" uid="uid://bwgc4xoxpg6rs" path="res://items/guns/player guns/glokler_and_koch.tscn" id="6_2ieo8"]
+[ext_resource type="PackedScene" uid="uid://bdw2fgswr67pa" path="res://items/guns/gun-scenes/m_714.tscn" id="5_hg6s5"]
+[ext_resource type="PackedScene" uid="uid://bwgc4xoxpg6rs" path="res://items/guns/gun-scenes/glokler_and_koch.tscn" id="6_2ieo8"]
 [ext_resource type="PackedScene" uid="uid://bca6c55glm5kd" path="res://components/hitbox_component.tscn" id="6_2322e"]
 [ext_resource type="PackedScene" uid="uid://d22hi5vpihhpk" path="res://components/health_component.tscn" id="7_a2ic5"]
-[ext_resource type="PackedScene" uid="uid://u30o524rdf0o" path="res://items/guns/player guns/rovington_781.tscn" id="7_ebec5"]
+[ext_resource type="PackedScene" uid="uid://u30o524rdf0o" path="res://items/guns/gun-scenes/rovington_781.tscn" id="7_ebec5"]
 [ext_resource type="Script" uid="uid://fwnsirxfdojw" path="res://player/managers/ui_manager.gd" id="8_hg6s5"]
 [ext_resource type="PackedScene" uid="uid://cns2ljf0fipot" path="res://player/heart/heart.tscn" id="8_qthg5"]
 
@@ -35,8 +35,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_20h37"]
 resource_name = "idle"
-length = 0.5
-step = 0.1
+length = 0.25
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,7 +44,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4]
@@ -52,8 +52,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5sgkr"]
 resource_name = "walk"
-length = 0.8
-step = 0.1
+length = 0.4
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -61,7 +61,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [8, 9, 10, 11, 12, 13, 14, 15]
@@ -98,16 +98,18 @@ texture = ExtResource("3_wr5l3")
 
 [node name="weapon_manager" type="Node2D" parent="." node_paths=PackedStringArray("ui")]
 script = ExtResource("5_dry04")
+weapon_radius = 30
+max_weapons = 3
 ui = NodePath("../ui_manager")
 
-[node name="m_714" parent="weapon_manager" instance=ExtResource("5_hg6s5")]
-position = Vector2(7, 9)
-reload_time = 2.0
-
 [node name="glokler_and_koch" parent="weapon_manager" instance=ExtResource("6_2ieo8")]
-visible = false
+position = Vector2(8, 7)
 
 [node name="rovington_781" parent="weapon_manager" instance=ExtResource("7_ebec5")]
+visible = false
+position = Vector2(13, 6)
+
+[node name="m_714" parent="weapon_manager" instance=ExtResource("5_hg6s5")]
 visible = false
 
 [node name="hitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_2322e")]
@@ -135,7 +137,6 @@ zoom = Vector2(2, 2)
 script = ExtResource("8_hg6s5")
 
 [node name="ui" type="CanvasLayer" parent="ui_manager"]
-visible = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ui_manager/ui"]
 offset_left = -7.0
