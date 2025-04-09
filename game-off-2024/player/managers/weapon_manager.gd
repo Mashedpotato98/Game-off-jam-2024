@@ -9,20 +9,19 @@ var weapon_index:int = 0
 
 #region godot functions
 func _ready():
-	var element_count = Global.weapons_bought.size()
-	current_weapon = get_child(weapon_index)
-	#initialize_weapons(element_count)
+	initialize_weapons()
 
-func _process(delta: float) -> void:
+	#for child in get_child_count():
+		#get_child(child).hide()
+		#get_child(child).set_process(false)
+	#get_child(weapon_index).show()
+	#get_child(weapon_index).set_process(true)
+
+func _process(_delta: float) -> void:
 	handle_weapon()
-	
-	#if weapon_index == get_child_count():
-		#weapon_index = 0
-	#current_weapon = get_child(weapon_index)
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("change_weapon"):
-		#weapon_index += 1
+	if event.is_action_pressed("change_weapon"):
 		switch()
 #endregion
 
@@ -35,9 +34,25 @@ func switch():
 
 	current_weapon = get_child(weapon_index)
 	get_child(weapon_index).show()
-	get_child(weapon_index).set_process(true)
+	get_child(weapon_index).set_process(false)
 
 	ui.update_ammo_count()
+
+func initialize_weapons():
+	for item in Global.weapons_bought:
+		add_child(item)
+	current_weapon = get_child(0)
+
+#endregion
+
+#region helper functions
+
+
+func increase_weapon_index():
+	if weapon_index == get_child_count() - 1:
+		weapon_index = 0
+	else:
+		weapon_index += 1
 
 func add_weapon(weapon:Node2D):
 	if get_child_count() < max_weapons:
@@ -50,6 +65,7 @@ func handle_weapon():
 	if Input.is_action_pressed("shoot") and current_weapon is gun_class:
 		current_weapon.use()
 		ui.update_ammo_count()
+
 	if Input.is_action_just_pressed('reload') and current_weapon is gun_class:
 		current_weapon.reload()
 		ui.update_ammo_count()
@@ -61,26 +77,4 @@ func handle_weapon():
 	current_weapon.look_at(mos_pos)
 	current_weapon.level_item(get_parent().global_position)
 
-#func initialize_weapons(element_count):
-	#for item in Global.weapons_bought:
-		#var get_element = item["item_location"]
-		#var load_element = load(get_element)
-		#var element_to_add = load_element.instantiate()
-		#add_child(element_to_add)
-	#weapon_check()
-
-#func weapon_check():
-	#for child in get_child_count():
-		#get_child(child).hide
-		#get_child(child).set_process(false)
-		#get_child(weapon_index).show()
-		#get_child(weapon_index).set_process(true)
-#endregion
-
-#region helper functions
-func increase_weapon_index():
-	if weapon_index == get_child_count() - 1:
-		weapon_index = 0
-	else:
-		weapon_index += 1
 #endregion

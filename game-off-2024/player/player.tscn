@@ -1,14 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://bv2g5wgeeo25m"]
+[gd_scene load_steps=16 format=3 uid="uid://bv2g5wgeeo25m"]
 
 [ext_resource type="Script" uid="uid://c8486q4jivmcy" path="res://player/player.gd" id="1_hvvt5"]
 [ext_resource type="Texture2D" uid="uid://bejo53i3s3xkf" path="res://assets/player.png" id="2_umjby"]
 [ext_resource type="Texture2D" uid="uid://cpmitqtk81anu" path="res://assets/light.png" id="3_wr5l3"]
 [ext_resource type="Script" uid="uid://ck1hoeyk4nkhy" path="res://player/managers/weapon_manager.gd" id="5_dry04"]
 [ext_resource type="PackedScene" uid="uid://bdw2fgswr67pa" path="res://items/guns/gun-scenes/m_714.tscn" id="5_hg6s5"]
-[ext_resource type="PackedScene" uid="uid://bwgc4xoxpg6rs" path="res://items/guns/gun-scenes/glokler_and_koch.tscn" id="6_2ieo8"]
 [ext_resource type="PackedScene" uid="uid://bca6c55glm5kd" path="res://components/hitbox_component.tscn" id="6_2322e"]
 [ext_resource type="PackedScene" uid="uid://d22hi5vpihhpk" path="res://components/health_component.tscn" id="7_a2ic5"]
-[ext_resource type="PackedScene" uid="uid://u30o524rdf0o" path="res://items/guns/gun-scenes/rovington_781.tscn" id="7_ebec5"]
 [ext_resource type="Script" uid="uid://fwnsirxfdojw" path="res://player/managers/ui_manager.gd" id="8_hg6s5"]
 [ext_resource type="PackedScene" uid="uid://cns2ljf0fipot" path="res://player/heart/heart.tscn" id="8_qthg5"]
 
@@ -102,15 +100,7 @@ weapon_radius = 30
 max_weapons = 3
 ui = NodePath("../ui_manager")
 
-[node name="glokler_and_koch" parent="weapon_manager" instance=ExtResource("6_2ieo8")]
-position = Vector2(8, 7)
-
-[node name="rovington_781" parent="weapon_manager" instance=ExtResource("7_ebec5")]
-visible = false
-position = Vector2(13, 6)
-
 [node name="m_714" parent="weapon_manager" instance=ExtResource("5_hg6s5")]
-visible = false
 
 [node name="hitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_2322e")]
 visible = false

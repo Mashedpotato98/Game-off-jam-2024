@@ -26,8 +26,11 @@ func hearts_update():
 	if health_component.health > 1:
 		hearts_list[0].get_child(0).play("idle")
 
-func _on_health_component_health_changed() -> void:
-	hearts_update()
-
 func update_ammo_count():
 	ammo_count.text = str(weapon_manager.current_weapon.mag_ammo) + "/" + str(weapon_manager.current_weapon.total_ammo)
+
+
+
+
+func _on_health_component_health_changed() -> void:
+	hearts_update()

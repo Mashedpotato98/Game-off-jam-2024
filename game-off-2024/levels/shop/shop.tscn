@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqird30l53e6t"]
+[gd_scene load_steps=3 format=3 uid="uid://cqird30l53e6t"]
 
 [ext_resource type="Script" uid="uid://bad5vq7lroftd" path="res://levels/shop/shop.gd" id="1_n1apf"]
+[ext_resource type="Texture2D" uid="uid://dxauvcpamjfab" path="res://merchant_eyes.png" id="2_yfwmk"]
 
 [node name="shop" type="Control"]
 layout_mode = 3
@@ -9,18 +10,42 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_n1apf")
 
-[node name="ItemList" type="ItemList" parent="."]
+[node name="Shop_list" type="ItemList" parent="."]
 layout_mode = 0
-offset_right = 1153.0
-offset_bottom = 641.0
+offset_left = 5.0
+offset_top = 225.0
+offset_right = 587.0
+offset_bottom = 716.0
+select_mode = 1
+
+[node name="Bought_list" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 593.0
+offset_top = 225.0
+offset_right = 715.0
+offset_bottom = 720.0
+icon_mode = 0
 
 [node name="buy" type="Button" parent="."]
 layout_mode = 0
-offset_left = 398.0
-offset_top = 541.0
-offset_right = 825.0
-offset_bottom = 637.0
+offset_left = 1.0
+offset_top = 537.0
+offset_right = 242.0
+offset_bottom = 633.0
 text = "buy"
 
-[connection signal="item_selected" from="ItemList" to="." method="_on_item_list_item_selected"]
+[node name="play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 535.0
+offset_right = 583.0
+offset_bottom = 637.0
+text = "Play"
+
+[node name="MerchantEyes" type="Sprite2D" parent="."]
+position = Vector2(325, 328)
+texture = ExtResource("2_yfwmk")
+
+[connection signal="multi_selected" from="Shop_list" to="." method="_on_item_list_multi_selected"]
 [connection signal="pressed" from="buy" to="." method="_on_buy_pressed"]
+[connection signal="pressed" from="play" to="." method="_on_play_pressed"]

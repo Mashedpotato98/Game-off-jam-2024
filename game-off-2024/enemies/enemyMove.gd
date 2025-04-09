@@ -7,17 +7,10 @@ class_name enemyMove
 @export var spd:int
 @export var accel:int
 
-var target:CharacterBody2D
-
-func Enter():
-	target = get_tree().get_first_node_in_group("player")
-
 func physics_update(_delta:float):
-	if target:
-		_move_to_taget(_delta)
 	enemy_parent.move_and_slide()
 
-func _move_to_taget(_delta):
+func _move_to_taget(_delta,target:CharacterBody2D):
 	var direction = Vector2()
 
 	navigation.target_position = target.global_position

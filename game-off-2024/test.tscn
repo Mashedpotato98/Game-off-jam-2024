@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://c1tmm2jcdytfx" path="res://enemies/shooting_guard/armed_guard.tscn" id="3_6uqi0"]
 [ext_resource type="Texture2D" uid="uid://v0ndm10bkmgl" path="res://assets/menu_background.png" id="3_ppyta"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_m44ab"]
-vertices = PackedVector2Array(1143.95, 13.9922, 1141.04, 637, 7, 637.992, 7, 13)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-3, 3, 1154, 4, 1151, 647, -3, 648)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6uqi0"]
+vertices = PackedVector2Array(83.9219, 75.7422, 290.977, 69.6797, 130.156, 248.992, 45.2422, 407.883, 123.406, 407.094)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 0, 2, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(75, 66, 314, 59, 140, 253, 133, 417, 34, 418)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ykrsh"]
 size = Vector2(45, 84)
@@ -15,8 +15,7 @@ size = Vector2(45, 84)
 [node name="Test" type="Node2D"]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-visible = false
-navigation_polygon = SubResource("NavigationPolygon_m44ab")
+navigation_polygon = SubResource("NavigationPolygon_6uqi0")
 
 [node name="Player" parent="." instance=ExtResource("1_flfnn")]
 position = Vector2(326, 161)
@@ -26,10 +25,10 @@ visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="armed_guard" parent="." instance=ExtResource("3_6uqi0")]
-position = Vector2(173, 260)
+position = Vector2(159, 263)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(207, 234)
+position = Vector2(204, 244)
 collision_layer = 2
 collision_mask = 0
 metadata/_edit_group_ = true

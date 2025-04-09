@@ -37,7 +37,8 @@ player_scanner = NodePath("../../player_scanner")
 
 [node name="sGuardMove" type="Node" parent="state_machine" node_paths=PackedStringArray("weapon_manager", "player_scanner", "enemy_parent", "navigation")]
 script = ExtResource("4_tls5a")
-weapon_manager = NodePath("../../weapon_manager")
+attack_range = 80
+weapon_manager = NodePath("../../weapon_manager_enem")
 player_scanner = NodePath("../../player_scanner")
 enemy_parent = NodePath("../..")
 navigation = NodePath("../../NavigationAgent2D")
@@ -47,12 +48,11 @@ accel = 20
 [node name="sGuardShoot" type="Node" parent="state_machine" node_paths=PackedStringArray("enem", "weapon_manager", "player_scanner")]
 script = ExtResource("5_mxbkf")
 enem = NodePath("../..")
-weapon_manager = NodePath("../../weapon_manager")
+weapon_manager = NodePath("../../weapon_manager_enem")
 player_scanner = NodePath("../../player_scanner")
 metadata/_custom_type_script = "uid://cysum8efffnl6"
 
 [node name="playerDetector" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetector"]
@@ -69,7 +69,7 @@ shape = SubResource("RectangleShape2D_mxbkf")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="weapon_manager" type="Node2D" parent="."]
+[node name="weapon_manager_enem" type="Node2D" parent="."]
 script = ExtResource("9_f3jb8")
 
 [node name="ShootTimer" type="Timer" parent="."]
@@ -79,5 +79,5 @@ target_position = Vector2(129, 0)
 collision_mask = 3
 
 [connection signal="body_entered" from="playerDetector" to="state_machine/sGuardIdle" method="_on_player_detector_body_entered"]
-[connection signal="body_exited" from="playerDetector" to="state_machine/sGuardMove" method="_on_player_detector_body_exited"]
 [connection signal="body_exited" from="playerDetector" to="state_machine/sGuardIdle" method="_on_player_detector_body_exited"]
+[connection signal="body_exited" from="playerDetector" to="state_machine/sGuardMove" method="_on_player_detector_body_exited"]
