@@ -6,6 +6,7 @@ var guns:Array = [{"name":"m4","load":preload("res://items/guns/gun-scenes/m_714
 
 @onready var gun_list:ItemList = $Shop_list
 @onready var bought_list:ItemList = $Bought_list
+@onready var bought_list_grid:GridContainer = $GridContainer
 
 var guns_selected:Array = []
 #endregion
@@ -18,15 +19,17 @@ func _ready() -> void:
 
 #region signals
 func _on_buy_pressed() -> void:
-	for i in guns_selected:
-		Global.weapons_bought.append(i)
-	guns_selected.clear()
-	print(Global.weapons_bought)
-
+	if guns_selected != []:
+		for i in guns_selected:
+			Global.weapons_bought.append(i)
+		guns_selected.clear()
 
 func _on_item_list_multi_selected(index: int, selected: bool) -> void:
 	guns_selected.append(gun_list.get_item_metadata(index))
-	bought_list.add_item(guns[index]['name'],guns[index]['icon'])
+	bought_list.add_item(guns[index]['name'],load(guns[index]['icon']))
+	var sprite:Sprite2D = Sprite2D.new()
+	sprite.texture = load(guns[index]['icon'])
+	bought_list_grid.add_child(sprite)
 
 
 
