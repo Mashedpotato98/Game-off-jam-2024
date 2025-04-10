@@ -15,7 +15,6 @@ offset_left = 5.0
 offset_top = 225.0
 offset_right = 587.0
 offset_bottom = 716.0
-select_mode = 1
 max_columns = 3
 
 [node name="Bought_list" type="ItemList" parent="."]
@@ -44,6 +43,7 @@ offset_right = 583.0
 offset_bottom = 637.0
 text = "Play"
 
+[connection signal="item_selected" from="Shop_list" to="." method="_on_shop_list_item_selected"]
 [connection signal="multi_selected" from="Shop_list" to="." method="_on_item_list_multi_selected"]
 [connection signal="pressed" from="buy" to="." method="_on_buy_pressed"]
 [connection signal="pressed" from="play" to="." method="_on_play_pressed"]

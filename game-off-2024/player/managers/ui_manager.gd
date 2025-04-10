@@ -29,8 +29,5 @@ func hearts_update():
 func update_ammo_count():
 	ammo_count.text = str(weapon_manager.current_weapon.mag_ammo) + "/" + str(weapon_manager.current_weapon.total_ammo)
 
-
-
-
 func _on_health_component_health_changed() -> void:
 	hearts_update()

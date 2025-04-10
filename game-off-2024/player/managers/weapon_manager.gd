@@ -1,7 +1,7 @@
 extends Node2D
 
 var current_weapon:item_class
-var weapon_index:int = 0
+var weapon_index:int = 1
 
 @export var weapon_radius:int
 @export var max_weapons:int
@@ -9,13 +9,14 @@ var weapon_index:int = 0
 
 #region godot functions
 func _ready():
+	print(Global.weapons_bought)
 	initialize_weapons()
 
-	#for child in get_child_count():
-		#get_child(child).hide()
-		#get_child(child).set_process(false)
-	#get_child(weapon_index).show()
-	#get_child(weapon_index).set_process(true)
+	for child in get_child_count():
+		get_child(child).hide()
+		get_child(child).set_process(false)
+	get_child(weapon_index).show()
+	get_child(weapon_index).set_process(true)
 
 func _process(_delta: float) -> void:
 	handle_weapon()
@@ -31,10 +32,12 @@ func switch():
 	get_child(weapon_index).set_process(false)
 
 	increase_weapon_index()
+	print(get_child(weapon_index))
 
 	current_weapon = get_child(weapon_index)
 	get_child(weapon_index).show()
 	get_child(weapon_index).set_process(false)
+
 
 	ui.update_ammo_count()
 

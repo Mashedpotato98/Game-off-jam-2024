@@ -6,7 +6,6 @@ var guns:Array = [{"name":"m4","load":preload("res://items/guns/gun-scenes/m_714
 
 @onready var gun_list:ItemList = $Shop_list
 @onready var bought_list:ItemList = $Bought_list
-@onready var bought_list_grid:GridContainer = $GridContainer
 
 var guns_selected:Array = []
 #endregion
@@ -25,20 +24,15 @@ func _on_buy_pressed() -> void:
 		guns_selected.clear()
 
 func _on_item_list_multi_selected(index: int, selected: bool) -> void:
-	guns_selected.append(gun_list.get_item_metadata(index))
+	guns_selected.append(gun_list.get_item_metadata(index).instantiate())
 	bought_list.add_item(guns[index]['name'],load(guns[index]['icon']))
-	var sprite:Sprite2D = Sprite2D.new()
-	sprite.texture = load(guns[index]['icon'])
-	bought_list_grid.add_child(sprite)
 
-
+func _on_shop_list_item_selected(index: int) -> void:
+	guns_selected.append(gun_list.get_item_metadata(index).instantiate())
+	bought_list.add_item(guns[index]['name'],load(guns[index]['icon']))
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file('res://levels/playable levels/level_1.tscn')
+	if Global.weapons_bought != []:
+		get_tree().change_scene_to_file('res://levels/playable levels/level_1.tscn')
 
 #endregion
-
-
-func buy(indx:int):
-		var bought_weapon:Node2D = gun_list.get_item_metadata(indx).instantiate()
-		Global.weapons_bought.append(bought_weapon)
