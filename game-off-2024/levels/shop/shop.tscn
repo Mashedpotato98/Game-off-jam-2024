@@ -12,35 +12,34 @@ script = ExtResource("1_n1apf")
 [node name="Shop_list" type="ItemList" parent="."]
 layout_mode = 0
 offset_left = 5.0
-offset_top = 225.0
-offset_right = 587.0
-offset_bottom = 716.0
+offset_top = 200.0
+offset_right = 1773.0
+offset_bottom = 1083.0
 max_columns = 3
 
 [node name="Bought_list" type="ItemList" parent="."]
 layout_mode = 0
-offset_left = 593.0
-offset_top = 225.0
-offset_right = 715.0
-offset_bottom = 720.0
+offset_left = 1786.0
+offset_top = 188.0
+offset_right = 1908.0
+offset_bottom = 1078.0
 focus_mode = 0
 mouse_filter = 2
 icon_mode = 0
 
 [node name="buy" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 537.0
-offset_right = 242.0
-offset_bottom = 633.0
+offset_top = 910.0
+offset_right = 354.0
+offset_bottom = 1075.0
 text = "buy"
 
 [node name="play" type="Button" parent="."]
 layout_mode = 0
-offset_left = 280.0
-offset_top = 535.0
-offset_right = 583.0
-offset_bottom = 637.0
+offset_left = 1415.0
+offset_top = 914.0
+offset_right = 1769.0
+offset_bottom = 1079.0
 text = "Play"
 
 [connection signal="item_selected" from="Shop_list" to="." method="_on_shop_list_item_selected"]

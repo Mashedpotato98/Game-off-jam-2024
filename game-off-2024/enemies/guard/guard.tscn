@@ -1,13 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqf3y3vbgxl1w"]
+[gd_scene load_steps=14 format=3 uid="uid://cqf3y3vbgxl1w"]
 
 [ext_resource type="Script" uid="uid://k08kjpkslals" path="res://enemies/guard/guard.gd" id="1_ant2o"]
 [ext_resource type="PackedScene" uid="uid://dqgmd25610vvb" path="res://components/state_machine.tscn" id="2_ioyy7"]
 [ext_resource type="PackedScene" uid="uid://8gjof1e4026n" path="res://enemies/components/wander.tscn" id="2_v8aeu"]
 [ext_resource type="Script" uid="uid://bhhk40qmaqvyi" path="res://enemies/guard/states/guardWander.gd" id="4_ax633"]
 [ext_resource type="Script" uid="uid://ubm820bsngcj" path="res://enemies/guard/states/guardMove.gd" id="5_wocvv"]
+[ext_resource type="Script" uid="uid://djvwklq8mfcum" path="res://enemies/guard/states/guardAttack.gd" id="6_uf72f"]
 [ext_resource type="Texture2D" uid="uid://cpmitqtk81anu" path="res://assets/light.png" id="7_14nkr"]
 [ext_resource type="PackedScene" uid="uid://bca6c55glm5kd" path="res://components/hitbox_component.tscn" id="8_mhclb"]
 [ext_resource type="PackedScene" uid="uid://d22hi5vpihhpk" path="res://components/health_component.tscn" id="9_tdwsp"]
+[ext_resource type="PackedScene" uid="uid://bje4s5b71rnj7" path="res://components/hurtbox_component.tscn" id="10_b7oh7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_toys2"]
 radius = 93.0054
@@ -15,7 +17,12 @@ radius = 93.0054
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vho0r"]
 size = Vector2(40, 39)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_xvm0t"]
+radius = 15.0
+
 [node name="guard" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_ant2o")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -38,12 +45,17 @@ wander = NodePath("../../wander")
 spd = 100
 accel = 50
 
-[node name="guardAttack" type="Node" parent="state_machine" node_paths=PackedStringArray("enemy_parent", "navigation")]
+[node name="guardMove" type="Node" parent="state_machine" node_paths=PackedStringArray("enemy_parent", "navigation")]
 script = ExtResource("5_wocvv")
 enemy_parent = NodePath("../..")
 navigation = NodePath("../../NavigationAgent2D")
 spd = 100
 accel = 50
+
+[node name="guardAttack" type="Node" parent="state_machine" node_paths=PackedStringArray("enemy_parent")]
+script = ExtResource("6_uf72f")
+enemy_parent = NodePath("../..")
+metadata/_custom_type_script = "uid://djvwklq8mfcum"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
@@ -68,5 +80,13 @@ shape = SubResource("RectangleShape2D_vho0r")
 [node name="health_component" parent="." instance=ExtResource("9_tdwsp")]
 max_health = 1
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="hurtboxComponent" parent="." instance=ExtResource("10_b7oh7")]
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtboxComponent"]
+shape = SubResource("CircleShape2D_xvm0t")
+
 [connection signal="body_entered" from="player_detector" to="state_machine/guardWander" method="_on_player_detector_body_entered"]
-[connection signal="body_exited" from="player_detector" to="state_machine/guardAttack" method="_on_player_detector_body_exited"]
+[connection signal="body_exited" from="player_detector" to="state_machine/guardMove" method="_on_player_detector_body_exited"]

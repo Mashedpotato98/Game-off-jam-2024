@@ -38,10 +38,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -157.5
-offset_top = -177.5
-offset_right = 157.5
-offset_bottom = 177.5
+offset_left = -249.0
+offset_top = -274.0
+offset_right = 248.0
+offset_bottom = 284.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_h0jgc")
@@ -53,10 +53,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -52.5
-offset_top = -109.5
-offset_right = 52.5
-offset_bottom = 109.5
+offset_left = -178.5
+offset_top = -181.0
+offset_right = 172.5
+offset_bottom = 197.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -71,5 +71,14 @@ text = "Volume"
 [node name="volume_slider" type="HSlider" parent="Menu/VboContainer"]
 layout_mode = 2
 
+[node name="back" type="Button" parent="."]
+layout_mode = 2
+offset_left = 787.0
+offset_top = 708.0
+offset_right = 1138.0
+offset_bottom = 742.0
+text = "BACK"
+
 [connection signal="toggled" from="Menu/VboContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="value_changed" from="Menu/VboContainer/volume_slider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]

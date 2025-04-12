@@ -2,7 +2,7 @@ extends Control
 
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://levels/playable levels/level_1.tscn")
+	get_tree().change_scene_to_file("res://levels/shop/shop.tscn")
 
 func _on_settings_pressed() -> void:
 	get_tree().change_scene_to_file("res://levels/ui/settings_menu.tscn")

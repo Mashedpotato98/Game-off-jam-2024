@@ -7,9 +7,6 @@ class_name enemyMove
 @export var spd:int
 @export var accel:int
 
-func physics_update(_delta:float):
-	enemy_parent.move_and_slide()
-
 func _move_to_taget(_delta,target:CharacterBody2D):
 	var direction = Vector2()
 
